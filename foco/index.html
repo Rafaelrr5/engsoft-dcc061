@@ -21,105 +21,1042 @@ body.hide .r .ans{filter:blur(6px);cursor:pointer}body.hide .r .ans.show{filter:
 .pri.cer{background:#c62828;color:#fff}.pri.top{background:#24243a;color:#fff}.pri.bk{background:#e5e5ea;color:#555}
 .note{background:#fff8e1;border-left:4px solid #f0b400;border-radius:6px;padding:8px 12px;margin:0 0 12px;font-size:14px}
 .split{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.split span{background:#ffffff22;border-radius:12px;padding:2px 10px;font-size:13px}
-h2 small{text-transform:none;letter-spacing:0;font-weight:400}</style></head><body>
-<header><h1>Foco TVC2 — o que deve cair</h1><p>Engenharia de Software · prova de 17/11 · 21 questões da Lista 2, por prioridade</p>
+h2 small{text-transform:none;letter-spacing:0;font-weight:400}
+.r .lab:first-child{}.of2{display:block;font-size:11px;font-weight:700;color:#7a5a00;text-transform:uppercase;letter-spacing:.05em;margin:4px 0}
+.p .enun2{font-weight:600;margin:4px 0}.p pre{font-weight:400}
+.ans.full{font-size:15px}.ans.full table,.teob table{display:block;overflow-x:auto;border-collapse:collapse;font-size:14px;margin:6px 0}
+.ans.full td,.ans.full th,.teob td,.teob th{border:1px solid #ddd;padding:4px 6px;vertical-align:top}.ans.full th,.teob th{background:#eef0f7}
+details.teo{margin-top:10px;border:1px solid #e3e3ea;border-radius:8px;padding:6px 10px;background:#fafafc}
+details.teo summary{cursor:pointer;font-weight:700;color:#24243a;font-size:14px}.teob{font-size:15px}.teob h3{font-size:15px;color:#24243a;margin:12px 0 4px}
+.exemplo{background:#e7f5ff;border-left:4px solid #1c7ed6;padding:6px 10px;margin:8px 0;border-radius:4px}
+.prova{background:#fff9db;border-left:4px solid #f59f00;padding:6px 10px;margin:8px 0;border-radius:4px}
+.atencao{background:#fff5f5;border-left:4px solid #c92a2a;padding:6px 10px;margin:8px 0;border-radius:4px}
+.min1,.recorte{background:#edf2ff;padding:8px 10px;border-radius:6px}.mais{font-size:13px}
+.teob *,.ans.full *{max-width:100%}
+</style></head><body>
+<header><h1>Foco TVC2 — o que deve cair</h1><p>Engenharia de Software · prova de 17/11 · 21 questões da Lista 2, por prioridade · enunciado completo, resposta explicada e a matéria de cada uma</p>
 <div class="split"><span>2 arquitetura</span><span>2 testes</span><span>2 princípios</span><span>1 qualidade</span></div></header>
 <div class="bar"><a href="#u-testes">Testes</a><a href="#u-arq">Arquitetura</a><a href="#u-princ">Princípios e padrões</a><a href="#u-qual">Qualidade</a><button onclick="document.body.classList.toggle('hide');this.textContent=document.body.classList.contains('hide')?'Mostrar respostas':'Me testar'">Me testar</button></div>
 <main><h2 id="u-testes">🧪 Testes <small>· 2 questões</small></h2><p class="note">O professor falou "se cair essa…" umas 5 vezes sobre a <b>34</b>. A <b>29 e a 30</b> também podem cair.</p><div class="q" id="q34">
-<div class="p"><div class="lab">Pergunta <span class="pri cer">Vai cair</span></div><span class="n">34</span>Preencha cobertura de comandos (Cmd) e branches (Brch). <pre><code>void f(int x, int y) {
-  if (x > 0) {
+<div class="p"><div class="lab">Pergunta <span class="pri cer">Vai cair</span></div><span class="n">34</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Para a seguinte função, preencha a tabela com as respectivas coberturas de Comandos e Branches. (Observação: este programa tem quatro comandos e quatro branches; cada if gera dois branches.)</p>
+<pre><code>void f(int x, int y) {
+  if (x &gt; 0) {
     x = 2 * x;
-    if (y > 0) {
+    if (y &gt; 0) {
       y = 2 * y;
     }
   }
-}</code></pre>4 comandos, 4 branches.</div>
+}</code></pre>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Comandos</b> = linhas executadas; <b>branches</b> = lados (V/F) de cada if percorridos.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>f(0,0)</b>: Cmd <b>25%</b>, Brch <b>25%</b> (só o 1º if, lado F).</li><li><b>f(1,1)</b>: Cmd <b>100%</b>, Brch <b>50%</b> (só lados V).</li><li><b>f(0,0) e f(1,1)</b>: Cmd <b>100%</b>, Brch <b>75%</b> (falta o F do 2º if).</li></ul></div></div>
-</div><div class="q" id="q29">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">29</span>Por que testes não conseguem provar a ausência de bugs?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p><b>Numeração.</b> Comandos: C1 = <code>if (x &gt; 0)</code>, C2 = <code>x = 2 * x</code>, C3 = <code>if (y &gt; 0)</code>, C4 = <code>y = 2 * y</code>. Branches: B1 = x&gt;0 verdadeiro, B2 = x&gt;0 falso, B3 = y&gt;0 verdadeiro, B4 = y&gt;0 falso.</p>
+<table>
+<tr><th>Teste</th><th>Comandos</th><th>Branches</th></tr>
+<tr><td>f(0,0)</td><td><b>25%</b> (1/4: só C1)</td><td><b>25%</b> (1/4: só B2)</td></tr>
+<tr><td>f(1,1)</td><td><b>100%</b> (4/4: C1, C2, C3, C4)</td><td><b>50%</b> (2/4: B1, B3)</td></tr>
+<tr><td>f(0,0) e f(1,1)</td><td><b>100%</b> (4/4)</td><td><b>75%</b> (3/4: B1, B2, B3)</td></tr>
+</table>
+<ul>
+<li><b>f(0,0):</b> x = 0, então x &gt; 0 é falso. Executa só C1 e sai. Pega só B2.</li>
+<li><b>f(1,1):</b> x = 1 &gt; 0, executa C2; y = 1 &gt; 0, executa C4. Todos os comandos rodam. Branches: só os lados verdadeiros (B1, B3).</li>
+<li><b>Juntos:</b> união dos comandos = {C1..C4} = 100%. União dos branches = {B1, B2, B3} = 75%. Falta B4 (x &gt; 0 e y &lt;= 0); acrescentar <code>f(1,0)</code> leva branches a 100%.</li>
+</ul>
+<p>Conferência: 1/4 = 25%; 2/4 = 50%; 3/4 = 75%; 4/4 = 100%. Total de comandos e branches bate com a observação do enunciado (4 e 4).</p></div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 11</summary><div class="teob"><h3>10. Cobertura de comandos e de branches (complemento)</h3>
+<p>Os slides do professor não trazem cobertura, mas as Questões 30, 34 e 35 cobram. Resposta pelo complemento (livro <i>Engenharia de Software Moderna</i>, Valente, cap. 8).</p>
+<ul>
+<li><b>Cobertura de comandos</b> = comandos executados pelos testes / total de comandos.</li>
+<li><b>Cobertura de branches</b> = desvios executados / total de desvios. Cada <code>if</code> gera <b>2 branches</b> (verdadeiro e falso), mesmo sem <code>else</code>.</li>
+<li>Convenção da lista: o próprio <code>if</code> conta como comando; chaves não contam.</li>
+<li>100% de branches implica 100% de comandos (em código sem trecho inalcançável). O contrário não vale: um <code>if</code> sem <code>else</code> pode ter todos os comandos executados sem nunca passar pelo lado falso.</li>
+</ul>
+<div class="exemplo"><b>Exemplo:</b>
+<pre><code>int abs(int x) {
+  if (x &lt; 0)      // comando 1 (branches: V, F)
+    x = -x;       // comando 2
+  return x;       // comando 3
+}
+// abs(-5): comandos 3/3 = 100%; branches 1/2 = 50% (só o V)
+// abs(-5) e abs(5): comandos 100%; branches 2/2 = 100%</code></pre></div>
+<div class="atencao"><b>Atenção:</b> 100% de cobertura não quer dizer ausência de bug. Na Questão 35, os testes com 95 e 85 dão 100% de comandos e de branches, e o bug na nota 90 continua lá.</div>
+</div>
+
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-11">Ver a Unidade 11 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q29">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">29</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Por que testes não conseguem provar a ausência de bugs?</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Dijkstra</b>: testes mostram a <b>presença</b> de bugs, nunca a ausência.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Provar exigiria executar com <b>todos os possíveis dados de entrada</b> — <b>impossível na prática</b>.</li></ul></div></div>
-</div><div class="q" id="q30">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">30</span>Por que normalmente não é necessário atingir 100% de cobertura de comandos?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<ul>
+<li>Um teste executa o programa com <b>alguns</b> casos de teste e verifica se o resultado é o esperado. O número de entradas e caminhos possíveis é, na prática, enorme ou infinito; não dá para testar todos.</li>
+<li>Um defeito só vira falha quando a entrada passa pelo trecho com defeito. Se nenhum caso de teste passa por lá, o bug continua escondido.</li>
+<li>Por isso, como diz Dijkstra, testes mostram a presença de bugs (principal objetivo), mas não a sua ausência (principal limitação). Testes são indicadores de qualidade, não prova de correção.</li>
+</ul></div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 11</summary><div class="teob"><h3>4. Defeito, bug e falha. O limite de Dijkstra</h3>
+<ul>
+<li><b>Defeito (defect) ou bug:</b> o erro está no código.</li>
+<li><b>Falha (failure):</b> o resultado errado que aparece quando o código com defeito é executado.</li>
+</ul>
+<pre><code>if (condition)
+    area = pi * raio * raio * raio;   // defeito: raio ao cubo
+// a falha só aparece quando condition for true e a área for calculada</code></pre>
+<p>"Testes de software mostram a presença de bugs, mas não a sua ausência." (Edsger W. Dijkstra). No slide, "mostram a presença" é marcado como o <b>principal objetivo</b> e "não a sua ausência" como a <b>principal limitação</b>.</p>
+<div class="prova"><b>Como cai na prova:</b> Questão 29 (por que testes não provam ausência de bugs) e Questão 35a (quando o bug vira falha).</div>
+<div class="atencao"><b>Atenção:</b> código com defeito pode rodar sem falhar se a entrada nunca passar pelo trecho errado. Por isso um teste "verde" não garante código correto.</div>
+</div>
+
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-11">Ver a Unidade 11 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q30">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">30</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Por que, normalmente, não é necessário e obrigatório atingir 100% de cobertura de comandos?</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Cobertura de comandos</b>: % das linhas executadas pelos testes.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Código <b>menos importante / pouco usado</b> não compensa (ex.: relatório usado 1 vez por ano).</li><li>Código <b>difícil de testar</b>, com muita <b>infraestrutura</b> (ex.: servlet) — <b>testabilidade</b>.</li></ul></div></div>
-</div><div class="q" id="q35">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">35</span>Conceito A se nota ≥ 90. Código: <code>if (nota > 90) return true; else return false;</code> (a) Há bug? Quando vira falha? (b) Testes com 95 e 85: cobertura de comandos e branches?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p>Os slides não detalham cobertura; resposta pelo complemento (Valente, cap. 8) e pelas regras de teste de unidade dos slides.</p>
+<ul>
+<li><b>Custo/benefício:</b> os últimos pontos percentuais são os mais caros (tratamento de erros raros, código difícil de alcançar) e acham poucos bugs.</li>
+<li><b>Código trivial:</b> os próprios slides dispensam testar get/set sem lógica, construtores, destruidores, delegadores e classes de fronteira. Isso já deixa a cobertura abaixo de 100%.</li>
+<li><b>100% não garante ausência de bugs:</b> executar um comando não significa verificar seu resultado com todas as entradas relevantes (ver Questão 35: 100% de cobertura e o bug na nota 90 passa).</li>
+<li>Cobertura é indicador para achar trechos sem teste, não meta absoluta. A meta é definida pelo time conforme o risco do sistema.</li>
+</ul></div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 11</summary><div class="teob"><h3>10. Cobertura de comandos e de branches (complemento)</h3>
+<p>Os slides do professor não trazem cobertura, mas as Questões 30, 34 e 35 cobram. Resposta pelo complemento (livro <i>Engenharia de Software Moderna</i>, Valente, cap. 8).</p>
+<ul>
+<li><b>Cobertura de comandos</b> = comandos executados pelos testes / total de comandos.</li>
+<li><b>Cobertura de branches</b> = desvios executados / total de desvios. Cada <code>if</code> gera <b>2 branches</b> (verdadeiro e falso), mesmo sem <code>else</code>.</li>
+<li>Convenção da lista: o próprio <code>if</code> conta como comando; chaves não contam.</li>
+<li>100% de branches implica 100% de comandos (em código sem trecho inalcançável). O contrário não vale: um <code>if</code> sem <code>else</code> pode ter todos os comandos executados sem nunca passar pelo lado falso.</li>
+</ul>
+<div class="exemplo"><b>Exemplo:</b>
+<pre><code>int abs(int x) {
+  if (x &lt; 0)      // comando 1 (branches: V, F)
+    x = -x;       // comando 2
+  return x;       // comando 3
+}
+// abs(-5): comandos 3/3 = 100%; branches 1/2 = 50% (só o V)
+// abs(-5) e abs(5): comandos 100%; branches 2/2 = 100%</code></pre></div>
+<div class="atencao"><b>Atenção:</b> 100% de cobertura não quer dizer ausência de bug. Na Questão 35, os testes com 95 e 85 dão 100% de comandos e de branches, e o bug na nota 90 continua lá.</div>
+</div>
+
+<div class="conceito">
+<h3>11. Quando parar de testar e ferramentas</h3>
+<p><b>Quando parar</b> (slide): todos os testes executados; bugs abaixo do esperado; funcionalidades funcionam; métricas atendidas (confiabilidade, disponibilidade, durabilidade); software confiável; tempo entre defeitos encontrados muito alto; o planejado foi atingido.</p>
+<p><b>Ferramentas:</b> Testlink (casos de teste), Bugzilla (relatório de incidentes), Mantis, Eventum e Jira (bug tracking), Selenium, Testopia e TestManager (gestão de testes).</p>
+<p><b>Certificações:</b> CBTS (ALATS), CTFL do ISTQB/BSTQB, ATC (IBQTS), QAI Brasil.</p>
+</div>
+
+<div class="questoes"><p class="mais"><a href="../tvc2/#aula-11">Ver a Unidade 11 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q35">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">35</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Alunos recebem conceito A se tiverem nota maior ou igual a 90. Implementação usada: <code>boolean isConceitoA(int nota) { if (nota &gt; 90) return true; else return false; }</code>. (a) Essa implementação possui um bug? Se sim, quando esse bug resulta em falha? (b) Suponha que a função seja testada com as notas 95 e 85. Qual a cobertura de comandos do teste? E a de branches?</p>
+<pre><code>boolean isConceitoA(int nota) {
+  if (nota &gt; 90)        // C1  (B1 = V, B2 = F)
+    return true;        // C2
+  else return false;    // C3
+}</code></pre>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Defeito vs falha</b> + <b>valor de fronteira</b>: 100% de cobertura não garante achar o bug.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>(a) Sim (<code>&gt;</code> em vez de <code>&gt;=</code>). Falha <b>quando a nota é 90</b>.</li><li>(b) <b>Comandos = branches = 100%</b> — e mesmo assim o bug passa.</li></ul></div></div>
-</div><div class="q" id="q28">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">28</span>Por que testes são tanto verificação quanto validação? Qual tipo serve para verificar? E para validar?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p><b>(a)</b> Sim. O requisito é "maior ou igual a 90" e o código usa <code>&gt;</code>. O defeito só resulta em falha quando <b>nota == 90</b>: a função devolve <code>false</code> e o aluno deveria ter conceito A. Para qualquer outra nota o resultado está certo. Correção:</p>
+<pre><code>boolean isConceitoA(int nota) {
+  return nota &gt;= 90;
+}</code></pre>
+<p><b>(b)</b> 3 comandos (C1, C2, C3) e 2 branches (B1, B2).</p>
+<table>
+<tr><th>Teste</th><th>Comandos</th><th>Branches</th></tr>
+<tr><td>nota 95</td><td>C1, C2</td><td>B1</td></tr>
+<tr><td>nota 85</td><td>C1, C3</td><td>B2</td></tr>
+<tr><td><b>95 e 85</b></td><td><b>100%</b> (3/3)</td><td><b>100%</b> (2/2)</td></tr>
+</table>
+<p>Mesmo com 100% de comandos e de branches, o bug não é detectado, porque nenhum teste usa o valor de fronteira 90. Cobertura total não prova ausência de bugs (Dijkstra).</p></div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 11</summary><div class="teob"><h3>4. Defeito, bug e falha. O limite de Dijkstra</h3>
+<ul>
+<li><b>Defeito (defect) ou bug:</b> o erro está no código.</li>
+<li><b>Falha (failure):</b> o resultado errado que aparece quando o código com defeito é executado.</li>
+</ul>
+<pre><code>if (condition)
+    area = pi * raio * raio * raio;   // defeito: raio ao cubo
+// a falha só aparece quando condition for true e a área for calculada</code></pre>
+<p>"Testes de software mostram a presença de bugs, mas não a sua ausência." (Edsger W. Dijkstra). No slide, "mostram a presença" é marcado como o <b>principal objetivo</b> e "não a sua ausência" como a <b>principal limitação</b>.</p>
+<div class="prova"><b>Como cai na prova:</b> Questão 29 (por que testes não provam ausência de bugs) e Questão 35a (quando o bug vira falha).</div>
+<div class="atencao"><b>Atenção:</b> código com defeito pode rodar sem falhar se a entrada nunca passar pelo trecho errado. Por isso um teste "verde" não garante código correto.</div>
+</div>
+
+<div class="conceito">
+<h3>10. Cobertura de comandos e de branches (complemento)</h3>
+<p>Os slides do professor não trazem cobertura, mas as Questões 30, 34 e 35 cobram. Resposta pelo complemento (livro <i>Engenharia de Software Moderna</i>, Valente, cap. 8).</p>
+<ul>
+<li><b>Cobertura de comandos</b> = comandos executados pelos testes / total de comandos.</li>
+<li><b>Cobertura de branches</b> = desvios executados / total de desvios. Cada <code>if</code> gera <b>2 branches</b> (verdadeiro e falso), mesmo sem <code>else</code>.</li>
+<li>Convenção da lista: o próprio <code>if</code> conta como comando; chaves não contam.</li>
+<li>100% de branches implica 100% de comandos (em código sem trecho inalcançável). O contrário não vale: um <code>if</code> sem <code>else</code> pode ter todos os comandos executados sem nunca passar pelo lado falso.</li>
+</ul>
+<div class="exemplo"><b>Exemplo:</b>
+<pre><code>int abs(int x) {
+  if (x &lt; 0)      // comando 1 (branches: V, F)
+    x = -x;       // comando 2
+  return x;       // comando 3
+}
+// abs(-5): comandos 3/3 = 100%; branches 1/2 = 50% (só o V)
+// abs(-5) e abs(5): comandos 100%; branches 2/2 = 100%</code></pre></div>
+<div class="atencao"><b>Atenção:</b> 100% de cobertura não quer dizer ausência de bug. Na Questão 35, os testes com 95 e 85 dão 100% de comandos e de branches, e o bug na nota 90 continua lá.</div>
+</div>
+
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-11">Ver a Unidade 11 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q28">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">28</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Explique porque testes podem ser considerados tanto uma atividade de verificação como de validação de software. Qual tipo de teste é mais adequado se o objetivo for verificação? Qual tipo de teste é mais adequado se o objetivo for validar um sistema de software?</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Verificação</b>: "fiz certo?" (vs especificação). <b>Validação</b>: "fiz a coisa certa?" (vs o que o cliente quer).</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Depende da referência: <b>especificação</b> = verificação; <b>cliente</b> = validação.</li><li>Verificação: testar um método para ver se retorna o <b>resultado especificado</b> (<b>teste de unidade</b>).</li><li>Validação: <b>teste funcional e de aceitação, ao lado do cliente</b>.</li></ul></div></div>
-</div><div class="q" id="q31">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">31</span>Defina e explique os 4 níveis de teste, com 1 exemplo de cada.</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<ul>
+<li>Testes fazem parte do processo de V&amp;V, junto com inspeções e revisões técnicas.</li>
+<li>Um teste compara o comportamento do software com uma referência. Se a referência é a <b>especificação</b> ("estamos construindo o produto corretamente?"), o teste verifica. Se a referência é a <b>necessidade real do usuário</b> ("estamos construindo o produto correto?"), o teste valida.</li>
+<li><b>Verificação:</b> testes de unidade, integração e sistema (estes últimos feitos por testadores, contra os requisitos especificados). Na classificação por objetivo, são os <b>testes de defeitos</b>.</li>
+<li><b>Validação:</b> testes de validação/aceitação (alfa e beta), feitos pelos usuários/stakeholders, com dados reais do cliente, baseados nos casos de uso e nos processos de negócio.</li>
+</ul></div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 11</summary><div class="teob"><h3>2. Verificação &amp; Validação (V&amp;V)</h3>
+<table>
+<tr><th></th><th>Verificação</th><th>Validação</th></tr>
+<tr><td>Pergunta</td><td>Estamos construindo o produto <b>corretamente</b>?</td><td>Estamos construindo o produto <b>correto</b>?</td></tr>
+<tr><td>Referência</td><td>A especificação</td><td>O que o usuário realmente deseja</td></tr>
+<tr><td>Teste típico</td><td>Unidade, integração, sistema (feitos por desenvolvedores e testadores)</td><td>Aceitação, alfa, beta (feitos por usuários/stakeholders)</td></tr>
+</table>
+<p>V&amp;V inclui também <b>inspeções e revisões técnicas</b>. Segundo o slide (Fagan, 1986; Prowell et al., 1999), elas são mais eficazes para detectar defeitos, mas não pegam bem defeitos de interação entre componentes, requisitos reais do cliente e requisitos não funcionais. Por isso os testes são indispensáveis para o que escapa das revisões.</p>
+<div class="exemplo"><b>Exemplo:</b> a especificação do Nubank diz "Pix acima de R$ 1.000 à noite exige confirmação extra". Um teste que confere esse limite é verificação. Mostrar o fluxo a clientes reais e descobrir que eles querem ajustar o limite pelo app é validação.</div>
+<div class="prova"><b>Como cai na prova:</b> Questão 28 pede justamente por que teste é verificação e validação, e qual tipo serve para cada.</div>
+</div>
+
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-11">Ver a Unidade 11 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q31">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">31</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Defina e explique os 4 (quatro) níveis ou estratégias de teste software, apresentando 1 (um) exemplo para cada estratégia.</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Níveis de teste</b>: do menor pedaço (unidade) até o cliente (aceitação).</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li><b>Unidade</b>: testa componente isolado (método/classe), feito pelo dev. Ex.: <code>fatorial(3) == 6</code> no JUnit.</li><li><b>Integração</b>: testa as <b>interfaces/interações</b> entre componentes. Ex.: pedido chama pagamento com os parâmetros certos.</li><li><b>Sistema</b>: sistema inteiro vs <b>requisitos</b> (inclusive não funcionais), caixa-preta. Ex.: desempenho com 20.000 usuários.</li><li><b>Aceitação</b>: <b>usuário/cliente</b> valida as necessidades do negócio (alfa/beta). Ex.: banco executa "DOC para terceiros".</li></ul></div></div>
-</div><h2 id="u-arq">🏛️ Arquitetura <small>· 2 questões · 1 é sobre Arquitetura Limpa</small></h2><p class="note">Arquitetura Limpa: estude <b>14, 15 e 16 juntas</b> (camadas → Regra de Dependência → Inversão de Controle). A outra deve ser a <b>7 ou parecida</b> ("provável arquitetura" de sistemas reais): o professor disse que provavelmente cai.</p><div class="q" id="mvc"><div class="p"><div class="lab">Pergunta <span class="pri cer">Ele falou muito</span></div>MVC tradicional × MVC Web × SPA: qual a diferença?</div><div class="c"><div class="lab">Conceito</div><b>MVC</b> = (Visão + Controle) + Modelo = Interface gráfica + Modelo. Três versões nos slides.</div><div class="r"><div class="lab">Resposta <span class="tag sl">Montada pelos slides</span></div><div class="ans"><ul><li><b>MVC tradicional</b>: anos 80, Smalltalk, apps gráficos <b>pré-Web</b>. Visão = GUI, Controle = eventos de mouse/teclado, Modelo = lógica e dados. Roda local. Ex.: <b>Excel desktop</b>.</li><li><b>MVC Web</b>: adaptação para a Web (fullstack). Controlador trata a <b>rota</b>, modelo busca os dados, visão <b>gera o HTML</b> no servidor. Cada ação <b>recarrega a página</b> (MPA). Ex.: Rails, Django, Spring, Laravel; <b>Moodle</b> (PHP).</li><li><b>SPA</b>: adaptação do MVC para o <b>front-end</b>; roda no browser, <b>não recarrega a página</b>, busca dados no servidor quando precisa. Ex.: <b>X/Twitter</b> (React), <b>Google Slides</b>.</li><li>Checklist da Q7: desktop com GUI → MVC tradicional; web com página gerada no servidor → MVC Web; web que não recarrega → SPA; backend de empresa grande → + microsserviços.</li></ul></div></div></div><div class="q" id="q7">
-<div class="p"><div class="lab">Pergunta <span class="pri cer">Vai cair</span></div><span class="n">7</span>Qual a provável arquitetura de: (a) Excel desktop; (b) Nubank App; (c) X/Twitter Web; (d) Google Slides; (e) Moodle? Justifique.</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<ul>
+<li><b>Teste de unidade:</b> testa componentes individuais (classe, método), na maioria das vezes pelo desenvolvedor. Em OO, a classe encapsulada é a unidade testável. <i>Exemplo:</i> JUnit testando <code>fatorial(0) == 1</code> e <code>fatorial(3) == 6</code> na classe <code>Math</code>.</li>
+<li><b>Teste de integração:</b> expõe defeitos nas interfaces e interações entre componentes ou sistemas integrados (passagem de mensagens e de parâmetros; mau uso e mau entendimento da interface). <i>Exemplo:</i> o módulo de pedidos chama o módulo de pagamento e confere que os parâmetros chegam na ordem certa e a resposta é tratada.</li>
+<li><b>Teste de sistema:</b> testa o sistema integrado contra os requisitos especificados, funcionais e não funcionais; feito por testadores; caixa-preta. <i>Exemplo:</i> teste de desempenho com 20.000 usuários fazendo download, calculando a velocidade de conexão necessária (500 KB/s).</li>
+<li><b>Teste de validação:</b> teste formal ligado às necessidades dos usuários, requisitos e processos de negócio, feito pelos usuários/stakeholders com dados do cliente, para estabelecer confiança no sistema. Alfa (no desenvolvimento) ou beta (no cliente). <i>Exemplo:</i> cenário "DOC para conta de terceiros" executado pelo banco, conferindo saldo de origem e destino antes e depois.</li>
+</ul></div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 11</summary><div class="teob"><h3>5. Os 4 níveis (estratégias) de teste e a pirâmide</h3>
+<p>Software OO deve ser testado em vários níveis de granularidade, da classe isolada ao sistema inteiro, incluindo colaborações entre classes e interfaces. Os slides empilham 4 níveis até a entrega:</p>
+<table>
+<tr><th>Nível</th><th>Definição (slide)</th><th>Quem faz</th><th>Tipos (slide)</th></tr>
+<tr><td>Unidade</td><td>Testa componentes individuais</td><td>Na maioria das vezes, o desenvolvedor</td><td>Teste de classes; de métodos e blocos de código</td></tr>
+<tr><td>Integração</td><td>Expõe defeitos nas interfaces e interações entre componentes ou sistemas integrados</td><td>Desenvolvedores</td><td>Teste de interfaces; de transmissão de dados e mensagens; de componentes</td></tr>
+<tr><td>Sistema</td><td>Testa o sistema integrado contra os requisitos especificados</td><td>Testadores</td><td>Desempenho; segurança; disponibilidade</td></tr>
+<tr><td>Validação</td><td>Teste formal ligado às necessidades dos usuários, requisitos e processos de negócio, para estabelecer confiança no sistema</td><td>Usuários/stakeholders</td><td>Aceitação; alfa (interno, pelo time); beta (externo, no cliente); release</td></tr>
+</table>
+
+<p><b>Pirâmide de testes</b> (slide 18, que mostra só unidade, integração e sistema):</p>
+<div style="display:flex;align-items:stretch;gap:16px;max-width:560px;margin:12px 0;font-size:0.95em">
+  <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:3px">
+    <div style="width:34%;background:#ddd;border:1px solid #888;text-align:center;padding:10px 4px">Testes de Sistema</div>
+    <div style="width:64%;background:#e8e8e8;border:1px solid #888;text-align:center;padding:10px 4px">Testes de Integração</div>
+    <div style="width:96%;background:#f3f3f3;border:1px solid #888;text-align:center;padding:14px 4px">Testes de Unidade</div>
+  </div>
+  <div style="display:flex;flex-direction:column;justify-content:space-between;border-left:2px solid #555;padding-left:10px;font-size:0.85em">
+    <div>&#9650; Maior granularidade<br>Menor quantidade<br>Mais lentos<br>Maior custo</div>
+    <div>Menor granularidade<br>Maior quantidade<br>Mais rápidos<br>Menor custo &#9660;</div>
+  </div>
+</div>
+<div class="exemplo"><b>Exemplo (iFood):</b> unidade: testar <code>calcularTaxaEntrega(distanciaKm)</code> isolado. Integração: o serviço de pedidos chama o de pagamento e a resposta chega no formato certo. Sistema: fazer um pedido inteiro e medir se aguenta 10 mil pedidos simultâneos. Validação: restaurantes parceiros usam a versão beta do painel com pedidos reais.</div>
+<div class="prova"><b>Como cai na prova:</b> Questões 31 e 33 (iguais) pedem os 4 níveis com exemplo. Questão 38 (ENADE) pede identificar unidade + integração.</div>
+<div class="atencao"><b>Atenção:</b> são 4 níveis, não 3. A pirâmide do slide tem 3 andares, mas a lista pede "4 níveis ou estratégias": inclua <b>validação</b>. Não confunda teste de sistema (testadores, contra a especificação) com validação (usuários, contra a necessidade real).</div>
+</div>
+
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-11">Ver a Unidade 11 inteira no guia da TVC2 →</a></p></div></details></div><h2 id="u-arq">🏛️ Arquitetura <small>· 2 questões · 1 é sobre Arquitetura Limpa</small></h2><p class="note">Arquitetura Limpa: estude <b>14, 15 e 16 juntas</b> (camadas → Regra de Dependência → Inversão de Controle). A outra deve ser a <b>7 ou parecida</b> ("provável arquitetura" de sistemas reais): o professor disse que provavelmente cai.</p><div class="q" id="mvc"><div class="p"><div class="lab">Pergunta <span class="pri cer">Ele falou muito</span></div>MVC tradicional × MVC Web × SPA: qual a diferença?</div><div class="c"><div class="lab">Conceito</div><b>MVC</b> = (Visão + Controle) + Modelo = Interface gráfica + Modelo. Três versões nos slides.</div><div class="r"><div class="lab">Resposta <span class="tag sl">Montada pelos slides</span></div><div class="ans"><ul><li><b>MVC tradicional</b>: anos 80, Smalltalk, apps gráficos <b>pré-Web</b>. Visão = GUI, Controle = eventos de mouse/teclado, Modelo = lógica e dados. Roda local. Ex.: <b>Excel desktop</b>.</li><li><b>MVC Web</b>: adaptação para a Web (fullstack). Controlador trata a <b>rota</b>, modelo busca os dados, visão <b>gera o HTML</b> no servidor. Cada ação <b>recarrega a página</b> (MPA). Ex.: Rails, Django, Spring, Laravel; <b>Moodle</b> (PHP).</li><li><b>SPA</b>: adaptação do MVC para o <b>front-end</b>; roda no browser, <b>não recarrega a página</b>, busca dados no servidor quando precisa. Ex.: <b>X/Twitter</b> (React), <b>Google Slides</b>.</li><li>Checklist da Q7: desktop com GUI → MVC tradicional; web com página gerada no servidor → MVC Web; web que não recarrega → SPA; backend de empresa grande → + microsserviços.</li></ul></div></div></div><div class="q" id="q7">
+<div class="p"><div class="lab">Pergunta <span class="pri cer">Vai cair</span></div><span class="n">7</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Qual a provável arquitetura dos seguintes sistemas? Justifique sua resposta. (a) Microsoft Excel (versão para desktop); (b) Nubank App (mobile); (c) X (Twitter) Web (front-end); (d) Google Slides (front-end); (e) Moodle.</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>MVC</b> (Modelo-Visão-Controlador, separa dados de interface) vs <b>SPA</b> (app web que não recarrega a página) vs <b>Microsserviços</b> (backend em serviços independentes).</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>(a) Excel: <b>MVC tradicional</b> — interface gráfica, roda local, <b>stand-alone</b>, modelo = dados das planilhas (como Smalltalk-80).</li><li>(b) Nubank: <b>MVC Web</b> — precisa guardar dados locais p/ ser responsivo (Flutter); também <b>SPA e microsserviços</b>.</li><li>(c) X/Twitter: <b>SPA</b> — responsivo, sem trocar de página a cada requisição (front em React); + <b>microsserviços</b>.</li><li>(d) Google Slides: <b>SPA</b> — muito responsivo, com autonomia do servidor.</li><li>(e) Moodle: <b>MVC</b> (PHP); páginas recarregam a cada transação, então <b>não é SPA</b>.</li></ul></div></div>
-</div><div class="q" id="q14">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">14</span>Explique as 4 camadas concêntricas da Arquitetura Limpa com 1 exemplo de sistema.</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p><b>Raciocínio:</b> a pergunta diz "provável", então o prof quer que você classifique pelo que dá para observar (onde roda, como a interface se comporta) usando os padrões dos slides. Para cada sistema: (1) roda onde: desktop, celular, browser ou servidor? (2) a interface recarrega a página inteira ou se atualiza sozinha? (3) é front-end ou o sistema todo?</p>
+<ul>
+<li><b>(a) Excel desktop: MVC tradicional.</b> É uma aplicação gráfica desktop, o caso de origem do MVC (Smalltalk, GUIs). Visão = planilha, menus, barras de rolagem, gráficos; Controle = tratamento de eventos de mouse e teclado; Modelo = células, fórmulas e dados. O mesmo modelo aparece em várias visões ao mesmo tempo (a grade de células e um gráfico com os mesmos dados), que é a ideia de "várias interfaces gráficas para um modelo".</li>
+<li><b>(b) Nubank App: no aparelho, um cliente no estilo MVC (adaptação para mobile, como o MVVM citado nos slides); no backend, microsserviços.</b> O app cuida da interface e de dados locais e consulta o servidor por API. O backend de um banco digital com milhões de clientes precisa escalar partes separadas (cartão, Pix, investimentos), lançar versões com frequência e tolerar falhas parciais, que são as vantagens dos microsserviços. (complemento: o Nubank divulga publicamente que usa microsserviços no backend.)</li>
+<li><b>(c) X Web front-end: SPA.</b> A timeline carrega posts novos, curtidas e respostas sem recarregar a página. O código roda no browser, manipula a interface, guarda estado e busca dados no servidor quando precisa. (complemento: o front-end web do X é feito em React.)</li>
+<li><b>(d) Google Slides front-end: SPA.</b> Mesmo caso do Google Docs, que os slides citam como exemplo de SPA: edição dentro do browser, sem trocar de página, sincronizando com o servidor em segundo plano.</li>
+<li><b>(e) Moodle: aplicação Web tradicional (MPA) em MVC Web / três camadas, provavelmente monolítica.</b> Browser (interface) → servidor de aplicação com a lógica (cursos, notas, fóruns) → banco de dados. Cada clique normalmente devolve uma página HTML nova gerada no servidor. É instalado pela própria instituição num servidor, o que combina com um monolito. (complemento: o Moodle é escrito em PHP, roda num servidor web com um banco relacional e se estende por plugins dentro da mesma aplicação.)</li>
+</ul>
+<p>Observação: como a pergunta é "provável", outra classificação bem justificada pelos slides (ex.: Moodle em três camadas sem citar MVC) também deve valer. O que conta é a justificativa.</p>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Quadro comparativo dos estilos arquiteturais</h3>
+<table>
+<thead><tr><th>Estilo</th><th>Ideia central (slides)</th><th>Onde aparece</th><th>Ponto forte</th><th>Ponto fraco</th></tr></thead>
+<tbody>
+<tr><td>Camadas (genérico)</td><td>Camadas hierárquicas; a camada n só usa serviços da camada n-1</td><td>Redes (TCP/IP), sistemas distribuídos</td><td>Dividir para conquistar: quebra complexidade, facilita entendimento, troca e reúso de camadas (ex.: TCP/UDP)</td><td>Os slides não detalham</td></tr>
+<tr><td>Três camadas</td><td>Interface (cliente) / lógica de negócio (servidor de aplicação) / banco de dados</td><td>"Downsizing" das décadas de 80 e 90: saída do mainframe para servidores Unix</td><td>Lógica centralizada no servidor de aplicação, vários clientes</td><td>Os slides não detalham</td></tr>
+<tr><td>Duas camadas (cliente/servidor)</td><td>Cliente = interface + lógica; servidor = banco de dados</td><td>Sistemas de informação mais simples</td><td>Mais simples</td><td>Todo o processamento é feito no cliente</td></tr>
+<tr><td>MVC tradicional</td><td>Visão (GUI) + Controle (eventos de mouse/teclado) + Modelo (lógica e dados). Interface gráfica = Visão + Controle</td><td>Anos 80, Smalltalk, aplicações gráficas pré-Web</td><td>Várias interfaces sobre o mesmo modelo</td><td>Os slides o tratam como padrão para sistemas menores</td></tr>
+<tr><td>MVC Web</td><td>Adaptação do MVC para a Web (fullstack); o controlador trata a rota, o modelo busca os dados, a visão gera o HTML</td><td>Rails, Django, Spring, Laravel</td><td>Frameworks maduros e ainda relevantes</td><td>Aplicação de múltiplas páginas (MPA): cada ação recarrega HTML, interface menos responsiva</td></tr>
+<tr><td>SPA</td><td>Adaptação do MVC para o front-end; roda no browser, manipula a interface e guarda dados, busca mais dados no servidor quando precisa</td><td>Gmail, Google Docs, Facebook, Figma; React, Vue</td><td>Interface responsiva, mais independente do servidor</td><td>Os slides não detalham</td></tr>
+<tr><td>Monolito</td><td>Em tempo de execução, o sistema é um único processo do SO (pode ter vários módulos de código)</td><td>Ponto de partida recomendado</td><td>Simples, sem custo de rede entre módulos</td><td>Ponto único de falha, escala tudo junto, release lento e burocrático</td></tr>
+<tr><td>Microsserviços</td><td>Módulos (ou grupos de módulos) viram processos independentes em tempo de execução</td><td>Netflix, Amazon, Google, Uber</td><td>Escala só o gargalo, releases independentes, tecnologias diferentes, falhas parciais</td><td>Sistema distribuído, latência de rede, transações distribuídas</td></tr>
+<tr><td>Orientada a Mensagens</td><td>(complemento) Clientes e servidores trocam mensagens por meio de uma fila; a comunicação é assíncrona</td><td>Só citada no slide 3</td><td>(complemento) Desacopla no tempo: quem envia não espera quem recebe estar disponível</td><td>—</td></tr>
+<tr><td>Publish/Subscribe</td><td>(complemento) Publicadores geram eventos; assinantes se registram nos eventos que interessam e são notificados</td><td>Só citada no slide 3</td><td>(complemento) Um evento chega a vários assinantes sem o publicador conhecê-los</td><td>—</td></tr>
+<tr><td>Hexagonal</td><td>Domínio no centro, independente de tecnologia; fala com o mundo por portas; adaptadores ligam portas à tecnologia</td><td>Alistair Cockburn ("Portas e Adaptadores")</td><td>Domínio isolado, testes sem infraestrutura, troca de tecnologia, várias interfaces</td><td>Mais abstrações, mais complexidade, exige disciplina</td></tr>
+<tr><td>Limpa</td><td>4 camadas concêntricas (Entidades, Casos de Uso, Adaptadores, Frameworks Externos); dependências apontam para dentro</td><td>Robert C. Martin (Uncle Bob); é um tipo de arquitetura em camadas</td><td>Domínio totalmente isolado, casos de uso fáceis de testar, troca fácil de banco/UI</td><td>Muitas camadas geram complexidade; excessiva para sistemas simples</td></tr>
+</tbody>
+</table>
+<div class="prova"><b>Como cai na prova:</b> a Questão 7 pede a "provável arquitetura" de sistemas reais. Use este quadro como checklist: desktop com GUI → MVC tradicional; app web que não recarrega a página → SPA; web com páginas geradas no servidor → MVC Web / três camadas; backend de empresa grande → microsserviços.</div>
+</div>
+
+<!-- ========== CAMADAS ========== -->
+<div class="conceito">
+<h3>MVC: tradicional, Web e SPA</h3>
+<ul>
+<li><b>Visão:</b> classes de GUI (janelas, botões, menus, barras de rolagem).</li>
+<li><b>Controle:</b> classes que tratam eventos de entrada (mouse, teclado).</li>
+<li><b>Modelo:</b> classes com lógica e dados da aplicação.</li>
+</ul>
+<p>Fórmula dos slides: <b>MVC = (Visão + Controladores) + Modelo = Interface Gráfica + Modelo</b>. O mesmo modelo pode ter várias interfaces gráficas.</p>
+<p>Três versões no resumo dos slides: <b>MVC tradicional</b> (Smalltalk, anos 80, aplicações gráficas pré-Web), <b>MVC Web</b> (adaptação para a Web, fullstack) e <b>SPA</b> (adaptação do MVC para o front-end).</p>
+<div class="exemplo"><b>Exemplo (slides, MVC Web):</b> o controlador recebe a rota, chama o modelo e passa o resultado para a visão.
+<pre><code>// Controlador
+get("/pesquisa", (req, res) -&gt; {
+  String autor = req.queryParams("autor");
+  Livro livro = pesq.pesquisaPorAutor(autor);      // Modelo
+  return pagina.exibeLivro(livro.getTitulo(),       // Visão
+                           livro.getAutor(), livro.getISBN());
+});
+
+// Modelo (ServicoPesquisaLivros) — repare: abre conexão JDBC e monta SQL
+// diretamente. Regra de negócio e banco de dados ficam misturados.</code></pre>
+</div>
+<p><b>SPA:</b> roda no browser, é "menos burra" (manipula a interface e armazena dados) e busca dados no servidor quando precisa. Exemplos dos slides: Gmail, Google Docs, Facebook, Figma. Feitas em JavaScript com React, Vue etc. O contraste é com as <b>MPAs</b> (aplicações web tradicionais): cada request devolve uma página HTML inteira, por isso a interface é menos responsiva.</p>
+<div class="atencao"><b>Atenção:</b> MVC não é o padrão de projeto Observer nem uma arquitetura de backend distribuída. E o slide do Modelo é um bom gancho para a Q11: no MVC "cru", o modelo costuma falar direto com o banco, que é justamente o acoplamento que Hexagonal e Limpa evitam.</div>
+</div>
+
+<!-- ========== MONOLITO x MICROSSERVIÇOS ========== -->
+<div class="conceito">
+<h3>Monolitos</h3>
+<p>Monolito: em tempo de execução, o sistema é <b>um único processo</b> do sistema operacional. Pode ter vários módulos de implementação e compilação; o que conta é o processo.</p>
+<p>Três problemas apontados nos slides:</p>
+<ol>
+<li><b>Ponto único de falha (single point of failure):</b> Netflix em 2008 teve uma falha grave no sistema e no BD e passou dias sem conseguir alugar DVDs. Reação: migrar para AWS e para microsserviços.</li>
+<li><b>Escalabilidade:</b> escalar horizontalmente exige replicar o monolito inteiro, mesmo quando o gargalo está em um único módulo.</li>
+<li><b>Release mais lento:</b> processo centralizado e burocrático; times não podem colocar módulos em produção, porque uma mudança pode afetar módulos que já funcionam. Surgem datas fixas de release e "homologação".</li>
+</ol>
+<div class="atencao"><b>Atenção:</b> escalabilidade <b>vertical</b> = máquina mais potente; <b>horizontal</b> = mais máquinas/instâncias. O problema do monolito é na horizontal: cada réplica carrega todos os módulos.</div>
+
+<h3>Microsserviços</h3>
+<p>Módulos (ou conjuntos de módulos) viram <b>processos independentes em tempo de execução</b>. São menores que um monolito, daí "micro". Outra forma de ver: num sistema com n rotas, o monolito tem as n rotas num processo; com microsserviços as rotas se dividem entre vários processos. Os slides deixam claro que isso é assunto de <b>backend</b>.</p>
+<table>
+<thead><tr><th>Vantagens (slides)</th><th>Desvantagens (slides: "quando não usar")</th></tr></thead>
+<tbody>
+<tr><td>Escalabilidade: escala só o módulo com problema de desempenho</td><td>Sistema distribuído: gerenciar centenas de processos</td></tr>
+<tr><td>Flexibilidade para releases: times com autonomia para pôr seu serviço em produção</td><td>Latência: a comunicação é via rede</td></tr>
+<tr><td>Tecnologias diferentes por serviço</td><td>Transações distribuídas</td></tr>
+<tr><td>Falhas parciais: só a recomendação pode cair, o resto segue no ar</td><td>Arquitetura mais complexa no geral</td></tr>
+</tbody>
+</table>
+<p><b>Lei de Conway (1968):</b> a arquitetura do software espelha a arquitetura da organização. Squads independentes tendem a produzir microsserviços independentes.</p>
+<p><b>Recomendação dos slides:</b> começar com monolito e migrar para microsserviços se o monolito tiver problemas de desempenho ou estiver atrasando releases. A migração pode ser gradual.</p>
+<div class="exemplo"><b>Exemplo:</b> num e-commerce na Black Friday, o serviço de busca e catálogo recebe 50 vezes mais tráfego que o de cadastro de endereço. Com microsserviços você sobe 40 instâncias de busca e mantém 2 de endereço. No monolito, sobem 40 cópias de tudo.</div>
+<div class="prova"><b>Como cai na prova:</b> Q8 (por que microsserviços dão autonomia de deploy e o monolito não; por que não compartilhar banco), Q9 (3 vantagens e 3 desvantagens) e Q10 (caso de streaming, em que o monolito ganha).</div>
+<div class="atencao"><b>Atenção:</b> o que define microsserviço é o <b>processo separado em tempo de execução</b>, não o repositório separado nem o tamanho do código. E microsserviço não é sempre melhor: a própria recomendação do prof é começar pelo monolito.</div>
+</div>
+
+<!-- ========== HEXAGONAL ========== -->
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q14">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">14</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Explique as 4 camadas concêntricas de uma Arquitetura Limpa a partir de 1 (um) exemplo de sistema que organiza suas classes, componentes e sistemas externos de acordo com os princípios desta arquitetura.</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Arquitetura Limpa</b>: 4 círculos, do núcleo (negócio) para a borda (tecnologia).</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Exemplo: sistema de <b>matrícula</b>.</li><li>1. <b>Entidades</b> (núcleo): regras gerais — Aluno, Disciplina.</li><li>2. <b>Casos de Uso</b>: regras do sistema — MatricularAluno (checa pré-requisitos).</li><li>3. <b>Adaptadores</b>: mediam o externo — controller REST que devolve JSON.</li><li>4. <b>Frameworks externos</b> (borda): banco de dados, UI, e-mail.</li><li>Dependências sempre <b>apontam para dentro</b>.</li></ul></div></div>
-</div><div class="q" id="q15">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">15</span>O que é Regra de Dependência em uma Arquitetura Limpa?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p><b>Exemplo: sistema acadêmico de matrícula.</b> As dependências sempre apontam para dentro.</p>
+<ul>
+<li><b>1. Entidades (núcleo):</b> classes comuns a vários sistemas da empresa e regras de negócio genéricas, como os relacionamentos do diagrama de classes. Ex.: <code>Aluno</code>, <code>Disciplina</code>, <code>DiarioDeClasse</code> (uma Disciplina tem pré-requisitos; um Diário tem alunos).</li>
+<li><b>2. Casos de Uso:</b> regras de negócio específicas deste sistema. Ex.: <code>MatricularAluno</code>, onde um Aluno só pode ser incluído em um DiarioDeClasse se tiver cursado os pré-requisitos da Disciplina. Não é o caso de uso da UML.</li>
+<li><b>3. Adaptadores:</b> classes e interfaces que fazem a mediação entre os sistemas externos e as camadas centrais. Ex.: <code>MatriculaController</code>, que implementa o endpoint REST <code>POST /matriculas</code>, chama o caso de uso e converte o resultado em JSON; <code>RepositorioAlunosSQL</code>, que implementa a interface de repositório definida pelo caso de uso.</li>
+<li><b>4. Frameworks Externos (borda):</b> bibliotecas, frameworks e sistemas externos. Ex.: framework web (Spring), banco de dados (PostgreSQL), interface com o usuário (app web), servidor de e-mail que avisa o aluno da matrícula.</li>
+</ul>
+<p>Se amanhã trocarmos PostgreSQL por outro banco, só mudam as camadas 3 e 4; Entidades e Casos de Uso continuam iguais.</p>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Arquitetura Limpa</h3>
+<p>Criada por Robert C. Martin (Uncle Bob) para favorecer reusabilidade de código, coesão, independência de tecnologia e testabilidade. É um <b>tipo de arquitetura em camadas</b>: camadas concêntricas, e as <b>dependências sempre apontam para dentro</b>.</p>
+
+<p><b>Diagrama das 4 camadas concêntricas:</b></p>
+<div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin:10px 0;font-size:0.85em">
+  <div style="border-radius:50%;background:#e3e3e3;border:2px solid #555;width:330px;height:330px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;box-sizing:border-box;padding-top:8px">
+    <b>Frameworks Externos</b>
+    <div style="border-radius:50%;background:#f7d9a8;border:2px solid #555;width:260px;height:260px;display:flex;flex-direction:column;align-items:center;box-sizing:border-box;padding-top:8px;margin-top:4px">
+      <b>Adaptadores</b>
+      <div style="border-radius:50%;background:#fff3b0;border:2px solid #555;width:180px;height:180px;display:flex;flex-direction:column;align-items:center;box-sizing:border-box;padding-top:8px;margin-top:4px">
+        <b>Casos de Uso</b>
+        <div style="border-radius:50%;background:#c8e6a8;border:2px solid #555;width:100px;height:100px;display:flex;align-items:center;justify-content:center;margin-top:10px">
+          <b>Entidades</b>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="max-width:280px">
+    <p><b>Regra de Dependência:</b> as setas de dependência só vão de fora para dentro.<br>Frameworks &rarr; Adaptadores &rarr; Casos de Uso &rarr; Entidades</p>
+    <p>Quem está dentro não conhece (não importa, não instancia, não cita) nada de quem está fora.</p>
+  </div>
+</div>
+
+<table>
+<thead><tr><th>Camada (de dentro para fora)</th><th>O que é (slides)</th><th>Exemplo num sistema acadêmico</th></tr></thead>
+<tbody>
+<tr><td>1. Entidades</td><td>Classes comuns a vários sistemas da empresa e regras de negócio genéricas (ex.: relacionamentos do diagrama de classes UML)</td><td>Aluno, Disciplina, DiarioDeClasse</td></tr>
+<tr><td>2. Casos de Uso</td><td>Regras de negócio específicas de um sistema</td><td>Matricular aluno: só inclui no DiarioDeClasse se ele cursou os pré-requisitos da Disciplina</td></tr>
+<tr><td>3. Adaptadores</td><td>Classes e interfaces que fazem a mediação entre a camada externa e as centrais (ex.: endpoints REST, conversão de resultados para JSON)</td><td>MatriculaController (REST), MatriculaPresenter (JSON), RepositorioAlunosJpa</td></tr>
+<tr><td>4. Frameworks Externos</td><td>Bibliotecas, frameworks e sistemas externos: persistência, UI, envio de e-mail, pagamento, hardware</td><td>Spring, PostgreSQL, React, servidor SMTP</td></tr>
+</tbody>
+</table>
+<div class="atencao"><b>Atenção:</b> "caso de uso" aqui <b>não</b> corresponde à especificação de requisitos nem ao diagrama de casos de uso da UML (os slides frisam isso). É uma classe com regra de negócio específica do sistema.</div>
+
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q15">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">15</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">O que é Regra de Dependência em uma Arquitetura Limpa?</p>
+</div>
 <div class="c"><div class="lab">Conceito</div>Regra que protege o núcleo: <b>de fora para dentro, nunca o contrário</b>.</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Classes de uma camada <b>não conhecem nada de camadas mais externas</b> (classe, função, variável).</li><li>Dependências <b>apontam para dentro</b>: Frameworks → Adaptadores → Casos de Uso → Entidades.</li><li>Mantém entidades e casos de uso <b>livres de tecnologia</b>.</li></ul></div></div>
-</div><div class="q" id="q16">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">16</span>O que é Inversão de Controle em uma Arquitetura Limpa?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<ul>
+<li>É a regra que diz que as classes de uma camada X não devem conhecer nenhuma classe de uma camada Y mais externa. Isso inclui funções, classes, variáveis e qualquer outro elemento de código.</li>
+<li>Ou seja, as dependências sempre apontam para dentro: Frameworks → Adaptadores → Casos de Uso → Entidades.</li>
+<li>Objetivo: garantir que Entidades e Casos de Uso fiquem limpos de qualquer tecnologia ou serviço externo ao sistema. Ex.: um caso de uso não pode importar uma classe do framework de banco de dados.</li>
+</ul>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Regra de Dependência e Inversão de Controle</h3>
+<p><b>Regra de Dependência:</b> as classes de uma camada X não devem conhecer nenhuma classe de uma camada Y mais externa, e isso inclui funções, classes, variáveis e qualquer outro elemento de código. É o que garante que entidades e casos de uso fiquem limpos de tecnologia ou serviço externo.</p>
+<p><b>Inversão de Controle:</b> às vezes um caso de uso precisa chamar um método de uma classe mais externa (ex.: mandar e-mail). Para não violar a regra, o caso de uso define uma <b>interface</b> na sua própria camada (MailServiceInterface / EmailService, com <code>send(String msg)</code>). A classe externa <code>MailServiceImpl</code> implementa essa interface. Em tempo de execução o caso de uso chama a implementação externa, mas no código só depende da interface interna. A seta de dependência no código aponta para dentro.</p>
+<div class="exemplo"><b>Exemplo (figura do slide em código):</b>
+<pre><code>// camada Casos de Uso
+public interface EmailService { void send(String msg); }
+
+public class MatricularAluno {                  // caso de uso
+  private final EmailService email;              // depende só da interface
+  public MatricularAluno(EmailService email) { this.email = email; }
+  public void executar(Aluno a, Disciplina d, DiarioDeClasse diario) {
+    if (!a.cursou(d.getPreRequisitos())) throw new PreRequisitoNaoCumprido();
+    diario.incluir(a);
+    email.send("Matrícula confirmada em " + d.getNome());
+  }
+}
+
+// camada externa (Adaptadores/Frameworks)
+public class MailServiceImpl implements EmailService {   // seta aponta PARA DENTRO
+  public void send(String msg) { /* usa a biblioteca SMTP aqui */ }
+}
+
+// montagem (main ou container de injeção de dependência)
+new MatricularAluno(new MailServiceImpl());</code></pre>
+</div>
+<p><b>Vantagens:</b> domínio totalmente isolado, casos de uso fáceis de testar, troca fácil de banco ou UI. <b>Desafios:</b> múltiplas camadas geram complexidade; pode ser excessiva para sistemas simples.</p>
+<div class="atencao"><b>Atenção:</b> isto é o mesmo raciocínio do Princípio de Inversão de Dependências (Unidade 8): depender de abstração, não de implementação. A diferença é a escala: lá é entre classes, aqui é entre camadas.</div>
+
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q16">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">16</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">O que é Inversão de Controle em uma Arquitetura Limpa?</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Inversão de controle</b>: o núcleo define a interface; a camada de fora a implementa.</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Usada quando um <b>caso de uso precisa chamar uma classe mais externa</b> sem violar a Regra de Dependência.</li><li>O caso de uso <b>define uma interface</b> na própria camada (ex.: EmailService); a classe externa (MailServiceImpl) <b>implementa</b>.</li><li>Em execução o fluxo vai para fora, mas <b>no código a dependência aponta para dentro</b> — daí "inversão".</li></ul></div></div>
-</div><div class="q" id="q10">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">10</span>Streaming detecta problemas em vídeos. #1: cada detector é um microsserviço que carrega o vídeo do storage. #2: detectores são módulos de um monolito, vídeo carregado 1 vez e compartilhado. Qual é mais escalável?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<ul>
+<li>É a técnica usada quando um caso de uso precisa chamar um método de uma classe de uma camada mais externa, sem violar a Regra de Dependência.</li>
+<li>O caso de uso define uma <b>interface</b> na sua própria camada; a classe da camada externa <b>implementa</b> essa interface; o caso de uso chama só a interface.</li>
+<li>Exemplo dos slides: interface <code>EmailService</code> (MailServiceInterface, com <code>send(String msg)</code>) na camada de Casos de Uso, chamada pelos casos de uso 1, 2 e 3; a classe externa <code>MailServiceImpl</code> a implementa.</li>
+<li>Em execução, o fluxo vai de dentro para fora (o caso de uso dispara o envio do e-mail), mas no código a dependência aponta para dentro (MailServiceImpl depende da interface). Por isso o nome inversão.</li>
+</ul>
+<pre><code>// camada Casos de Uso
+interface EmailService { void send(String msg); }
+class CasoDeUso1 { EmailService email; /* ... */ email.send("..."); }
+
+// camada externa
+class MailServiceImpl implements EmailService {
+  public void send(String msg) { /* SMTP */ }
+}</code></pre>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Regra de Dependência e Inversão de Controle</h3>
+<p><b>Regra de Dependência:</b> as classes de uma camada X não devem conhecer nenhuma classe de uma camada Y mais externa, e isso inclui funções, classes, variáveis e qualquer outro elemento de código. É o que garante que entidades e casos de uso fiquem limpos de tecnologia ou serviço externo.</p>
+<p><b>Inversão de Controle:</b> às vezes um caso de uso precisa chamar um método de uma classe mais externa (ex.: mandar e-mail). Para não violar a regra, o caso de uso define uma <b>interface</b> na sua própria camada (MailServiceInterface / EmailService, com <code>send(String msg)</code>). A classe externa <code>MailServiceImpl</code> implementa essa interface. Em tempo de execução o caso de uso chama a implementação externa, mas no código só depende da interface interna. A seta de dependência no código aponta para dentro.</p>
+<div class="exemplo"><b>Exemplo (figura do slide em código):</b>
+<pre><code>// camada Casos de Uso
+public interface EmailService { void send(String msg); }
+
+public class MatricularAluno {                  // caso de uso
+  private final EmailService email;              // depende só da interface
+  public MatricularAluno(EmailService email) { this.email = email; }
+  public void executar(Aluno a, Disciplina d, DiarioDeClasse diario) {
+    if (!a.cursou(d.getPreRequisitos())) throw new PreRequisitoNaoCumprido();
+    diario.incluir(a);
+    email.send("Matrícula confirmada em " + d.getNome());
+  }
+}
+
+// camada externa (Adaptadores/Frameworks)
+public class MailServiceImpl implements EmailService {   // seta aponta PARA DENTRO
+  public void send(String msg) { /* usa a biblioteca SMTP aqui */ }
+}
+
+// montagem (main ou container de injeção de dependência)
+new MatricularAluno(new MailServiceImpl());</code></pre>
+</div>
+<p><b>Vantagens:</b> domínio totalmente isolado, casos de uso fáceis de testar, troca fácil de banco ou UI. <b>Desafios:</b> múltiplas camadas geram complexidade; pode ser excessiva para sistemas simples.</p>
+<div class="atencao"><b>Atenção:</b> isto é o mesmo raciocínio do Princípio de Inversão de Dependências (Unidade 8): depender de abstração, não de implementação. A diferença é a escala: lá é entre classes, aqui é entre camadas.</div>
+
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q10">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">10</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Suponha uma empresa de streaming que deseja implementar um sistema detector de problemas de qualidade em seus vídeos (legendas, áudio, congelamento de imagens etc.). Os vídeos estão em um sistema de storage (memória secundária). Arquitetura #1: cada detector é um microsserviço, que recebe o nome do vídeo, carrega o vídeo do storage e executa a detecção. Arquitetura #2: os detectores são módulos de um monolito; o vídeo é carregado uma única vez do storage para a memória principal e compartilhado por todos os detectores. Supondo uma empresa do porte da Amazon Prime Video, qual arquitetura é mais escalável? Justifique.</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Quando NÃO usar microsserviços</b>: se dividir obriga a repetir trabalho caro (I/O).</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>Arquitetura #2 (monolito)</b>.</li><li>Carrega o vídeo da <b>memória secundária para a principal uma única vez</b>; na #1 cada detector carrega de novo.</li><li>Economiza <b>tempo de execução</b> e <b>custo de nuvem</b>. (Caso real: Amazon Prime Video.)</li></ul></div></div>
-</div><div class="q" id="q9">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">9</span>3 vantagens e 3 desvantagens de microsserviços.</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p><b>A Arquitetura #2 (monolito) é a mais escalável neste caso.</b></p>
+<ul>
+<li>Na #1, com N detectores, cada vídeo é lido do storage N vezes, e cada leitura passa pela rede. Com milhões de vídeos, o custo de leitura e transferência cresce na proporção do número de detectores. É a desvantagem de <b>latência</b> dos microsserviços (comunicação via rede) multiplicada pelo volume.</li>
+<li>Na #2, o vídeo é lido uma vez e fica na memória principal. Todos os detectores acessam os mesmos dados no mesmo processo, sem tráfego de rede entre eles.</li>
+<li>O argumento a favor da #1 (escalar só o detector que é gargalo) pesa pouco aqui: todos os detectores processam todos os vídeos, então a carga cresce junto. O monolito ainda pode escalar horizontalmente: mais instâncias, cada uma analisando vídeos diferentes.</li>
+<li>Isso confirma a recomendação dos slides: microsserviços trazem complexidade (sistema distribuído, latência), e só valem quando o monolito tem problema de desempenho ou atrasa releases. Aqui é o contrário: a divisão em processos é que cria o problema de desempenho.</li>
+</ul>
+<p><b>(complemento, fato externo):</b> é um caso real. Em 2023 o time do Prime Video publicou que o serviço de monitoramento de qualidade de vídeo e áudio, feito antes com componentes distribuídos (microsserviços/serverless), foi migrado para um único processo (monolito). O principal motivo foi o custo de transferir os mesmos dados de vídeo entre os componentes. O time relatou redução de cerca de 90% no custo de infraestrutura e maior capacidade de escalar.</p>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Arquitetura e padrões arquiteturais</h3>
+<p><b>Arquitetura</b> = projeto em mais alto nível. A pergunta deixa de ser "como divido essa classe?" e passa a ser "como divido o sistema em pacotes, módulos, subsistemas, camadas ou serviços?".</p>
+<p><b>Padrão arquitetural</b> = modelo pré-definido de arquitetura. Os slides listam: Camadas (duas e três), MVC, Microsserviços, Orientada a Mensagens e Publish/Subscribe. Depois acrescentam Hexagonal e Limpa, que eles chamam de <i>princípios</i>, não de arquiteturas em si.</p>
+<div class="atencao"><b>Atenção:</b> Orientada a Mensagens e Publish/Subscribe aparecem só na lista do slide 3. Não há slides explicando os dois. Eles estão no quadro abaixo com uma definição curta marcada como complemento; é pouco provável que caiam em profundidade.</div>
+
+<h3>Quadro comparativo dos estilos arquiteturais</h3>
+<table>
+<thead><tr><th>Estilo</th><th>Ideia central (slides)</th><th>Onde aparece</th><th>Ponto forte</th><th>Ponto fraco</th></tr></thead>
+<tbody>
+<tr><td>Camadas (genérico)</td><td>Camadas hierárquicas; a camada n só usa serviços da camada n-1</td><td>Redes (TCP/IP), sistemas distribuídos</td><td>Dividir para conquistar: quebra complexidade, facilita entendimento, troca e reúso de camadas (ex.: TCP/UDP)</td><td>Os slides não detalham</td></tr>
+<tr><td>Três camadas</td><td>Interface (cliente) / lógica de negócio (servidor de aplicação) / banco de dados</td><td>"Downsizing" das décadas de 80 e 90: saída do mainframe para servidores Unix</td><td>Lógica centralizada no servidor de aplicação, vários clientes</td><td>Os slides não detalham</td></tr>
+<tr><td>Duas camadas (cliente/servidor)</td><td>Cliente = interface + lógica; servidor = banco de dados</td><td>Sistemas de informação mais simples</td><td>Mais simples</td><td>Todo o processamento é feito no cliente</td></tr>
+<tr><td>MVC tradicional</td><td>Visão (GUI) + Controle (eventos de mouse/teclado) + Modelo (lógica e dados). Interface gráfica = Visão + Controle</td><td>Anos 80, Smalltalk, aplicações gráficas pré-Web</td><td>Várias interfaces sobre o mesmo modelo</td><td>Os slides o tratam como padrão para sistemas menores</td></tr>
+<tr><td>MVC Web</td><td>Adaptação do MVC para a Web (fullstack); o controlador trata a rota, o modelo busca os dados, a visão gera o HTML</td><td>Rails, Django, Spring, Laravel</td><td>Frameworks maduros e ainda relevantes</td><td>Aplicação de múltiplas páginas (MPA): cada ação recarrega HTML, interface menos responsiva</td></tr>
+<tr><td>SPA</td><td>Adaptação do MVC para o front-end; roda no browser, manipula a interface e guarda dados, busca mais dados no servidor quando precisa</td><td>Gmail, Google Docs, Facebook, Figma; React, Vue</td><td>Interface responsiva, mais independente do servidor</td><td>Os slides não detalham</td></tr>
+<tr><td>Monolito</td><td>Em tempo de execução, o sistema é um único processo do SO (pode ter vários módulos de código)</td><td>Ponto de partida recomendado</td><td>Simples, sem custo de rede entre módulos</td><td>Ponto único de falha, escala tudo junto, release lento e burocrático</td></tr>
+<tr><td>Microsserviços</td><td>Módulos (ou grupos de módulos) viram processos independentes em tempo de execução</td><td>Netflix, Amazon, Google, Uber</td><td>Escala só o gargalo, releases independentes, tecnologias diferentes, falhas parciais</td><td>Sistema distribuído, latência de rede, transações distribuídas</td></tr>
+<tr><td>Orientada a Mensagens</td><td>(complemento) Clientes e servidores trocam mensagens por meio de uma fila; a comunicação é assíncrona</td><td>Só citada no slide 3</td><td>(complemento) Desacopla no tempo: quem envia não espera quem recebe estar disponível</td><td>—</td></tr>
+<tr><td>Publish/Subscribe</td><td>(complemento) Publicadores geram eventos; assinantes se registram nos eventos que interessam e são notificados</td><td>Só citada no slide 3</td><td>(complemento) Um evento chega a vários assinantes sem o publicador conhecê-los</td><td>—</td></tr>
+<tr><td>Hexagonal</td><td>Domínio no centro, independente de tecnologia; fala com o mundo por portas; adaptadores ligam portas à tecnologia</td><td>Alistair Cockburn ("Portas e Adaptadores")</td><td>Domínio isolado, testes sem infraestrutura, troca de tecnologia, várias interfaces</td><td>Mais abstrações, mais complexidade, exige disciplina</td></tr>
+<tr><td>Limpa</td><td>4 camadas concêntricas (Entidades, Casos de Uso, Adaptadores, Frameworks Externos); dependências apontam para dentro</td><td>Robert C. Martin (Uncle Bob); é um tipo de arquitetura em camadas</td><td>Domínio totalmente isolado, casos de uso fáceis de testar, troca fácil de banco/UI</td><td>Muitas camadas geram complexidade; excessiva para sistemas simples</td></tr>
+</tbody>
+</table>
+<div class="prova"><b>Como cai na prova:</b> a Questão 7 pede a "provável arquitetura" de sistemas reais. Use este quadro como checklist: desktop com GUI → MVC tradicional; app web que não recarrega a página → SPA; web com páginas geradas no servidor → MVC Web / três camadas; backend de empresa grande → microsserviços.</div>
+</div>
+
+<!-- ========== CAMADAS ========== -->
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q9">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">9</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Descreva 3 vantagens e outras 3 desvantagens de uma arquitetura baseada em microsserviços.</p>
+</div>
 <div class="c"><div class="lab">Conceito</div>Trade-off: <b>independência</b> dos times vs <b>custo de sistema distribuído</b>.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Vantagens: <b>evolução independente</b> (cada time com suas releases); <b>escalar com granularidade fina</b>; <b>tecnologias diferentes</b>; <b>falhas parciais</b> (cai um serviço, não tudo).</li><li>Desvantagem 1 — <b>Complexidade</b>: em vez de chamada de método, protocolo como <b>HTTP/REST</b>.</li><li>Desvantagem 2 — <b>Latência</b>: chamar outra máquina tem custo de comunicação.</li><li>Desvantagem 3 — <b>Transações distribuídas</b>: difícil garantir <b>atomicidade</b> com vários bancos.</li></ul></div></div>
-</div><div class="q" id="q13">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">13</span>Para que servem as portas em uma Arquitetura Hexagonal?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<p><b>Vantagens:</b></p>
+<ul>
+<li><b>Escalabilidade:</b> dá para escalar apenas o serviço com problema de desempenho, sem replicar o sistema inteiro.</li>
+<li><b>Flexibilidade para releases:</b> times têm autonomia para colocar seu serviço em produção, porque processos independentes interferem menos uns nos outros.</li>
+<li><b>Falhas parciais:</b> se um serviço cai (ex.: recomendação), o resto continua no ar.</li>
+<li>(Também vale) <b>Tecnologias diferentes</b> em cada serviço.</li>
+</ul>
+<p><b>Desvantagens:</b></p>
+<ul>
+<li><b>Complexidade de sistema distribuído:</b> gerenciar centenas de processos.</li>
+<li><b>Latência:</b> a comunicação entre serviços é via rede, mais lenta que uma chamada de método no mesmo processo.</li>
+<li><b>Transações distribuídas:</b> uma operação que envolve vários serviços é difícil de manter consistente.</li>
+</ul>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Microsserviços</h3>
+<p>Módulos (ou conjuntos de módulos) viram <b>processos independentes em tempo de execução</b>. São menores que um monolito, daí "micro". Outra forma de ver: num sistema com n rotas, o monolito tem as n rotas num processo; com microsserviços as rotas se dividem entre vários processos. Os slides deixam claro que isso é assunto de <b>backend</b>.</p>
+<table>
+<thead><tr><th>Vantagens (slides)</th><th>Desvantagens (slides: "quando não usar")</th></tr></thead>
+<tbody>
+<tr><td>Escalabilidade: escala só o módulo com problema de desempenho</td><td>Sistema distribuído: gerenciar centenas de processos</td></tr>
+<tr><td>Flexibilidade para releases: times com autonomia para pôr seu serviço em produção</td><td>Latência: a comunicação é via rede</td></tr>
+<tr><td>Tecnologias diferentes por serviço</td><td>Transações distribuídas</td></tr>
+<tr><td>Falhas parciais: só a recomendação pode cair, o resto segue no ar</td><td>Arquitetura mais complexa no geral</td></tr>
+</tbody>
+</table>
+<p><b>Lei de Conway (1968):</b> a arquitetura do software espelha a arquitetura da organização. Squads independentes tendem a produzir microsserviços independentes.</p>
+<p><b>Recomendação dos slides:</b> começar com monolito e migrar para microsserviços se o monolito tiver problemas de desempenho ou estiver atrasando releases. A migração pode ser gradual.</p>
+<div class="exemplo"><b>Exemplo:</b> num e-commerce na Black Friday, o serviço de busca e catálogo recebe 50 vezes mais tráfego que o de cadastro de endereço. Com microsserviços você sobe 40 instâncias de busca e mantém 2 de endereço. No monolito, sobem 40 cópias de tudo.</div>
+<div class="prova"><b>Como cai na prova:</b> Q8 (por que microsserviços dão autonomia de deploy e o monolito não; por que não compartilhar banco), Q9 (3 vantagens e 3 desvantagens) e Q10 (caso de streaming, em que o monolito ganha).</div>
+<div class="atencao"><b>Atenção:</b> o que define microsserviço é o <b>processo separado em tempo de execução</b>, não o repositório separado nem o tamanho do código. E microsserviço não é sempre melhor: a própria recomendação do prof é começar pelo monolito.</div>
+</div>
+
+<!-- ========== HEXAGONAL ========== -->
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q13">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">13</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Para que servem as portas em uma Arquitetura Hexagonal?</p>
+</div>
 <div class="c"><div class="lab">Conceito</div><b>Porta</b> = <b>interface</b> (contrato) entre domínio e mundo externo.</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Por onde passa a <b>comunicação entre domínio e mundo externo</b>; independentes de tecnologia.</li><li><b>Portas de entrada</b>: de fora para dentro (<b>serviços providos</b>, ex.: empréstimo).</li><li><b>Portas de saída</b>: de dentro para fora (<b>serviços requeridos</b>, ex.: persistência).</li><li>Domínio só conhece a porta; o <b>adaptador a implementa</b> → domínio isolado.</li></ul></div></div>
-</div><h2 id="u-princ">📐 Princípios e padrões <small>· 2 questões</small></h2><p class="note">Regra da cola: <b>chamadas encadeadas</b> <code>a.b().c().d()</code> = viola <b>Demeter</b>. Segundo a Gabi, as questões de padrões (<b>26 e 27</b>) não caem.</p><div class="q" id="q20">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">20</span>Que princípio é violado por <code>bib.getAcervo().getAreaConhecimento("ES").getLivros().find("ESM").getNumExemplares();</code>? Que mudança fazer em Biblioteca?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+<ul>
+<li>Portas são interfaces por onde passa toda a comunicação entre o domínio e o mundo externo. Como são independentes de tecnologia, ficam no hexágono interior.</li>
+<li><b>Portas de entrada:</b> comunicação de fora para dentro, quando uma classe externa precisa chamar um método do domínio. São os <b>serviços providos</b> (ex.: serviço de empréstimo).</li>
+<li><b>Portas de saída:</b> comunicação de dentro para fora, quando o domínio precisa chamar uma classe externa. São os <b>serviços requeridos</b> (ex.: persistência).</li>
+<li>Função na arquitetura: o domínio chama portas, os adaptadores implementam portas, e assim o domínio fica isolado da tecnologia, pode ser testado sem infraestrutura e aceita várias interfaces.</li>
+</ul>
+</div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 10</summary><div class="teob"><h3>Arquitetura Hexagonal (Portas e Adaptadores)</h3>
+<p>Os slides dizem que MVC e MVVM são padrões para sistemas menores. Para sistemas maiores e que vão crescer, vale ter arquitetura própria. Hexagonal e Limpa <b>não são arquiteturas em si</b>, e sim princípios que garantem uma arquitetura mais limpa.</p>
+<p>Dois tipos de classe:</p>
+<ul>
+<li><b>Classes de domínio:</b> ligadas diretamente ao negócio do sistema.</li>
+<li><b>Classes de infraestrutura:</b> tecnologia e integração com sistemas externos (banco de dados etc.).</li>
+</ul>
+<p>Princípios: o domínio é independente de tecnologia, a comunicação é feita por <b>portas</b> e os <b>adaptadores</b> (classes que implementam o padrão de projeto Adaptador) ligam o mundo externo ao domínio.</p>
+<ul>
+<li><b>Porta de entrada:</b> interface usada de fora para dentro, quando uma classe externa chama o domínio. São os <b>serviços providos</b>.</li>
+<li><b>Porta de saída:</b> interface usada de dentro para fora, quando o domínio precisa chamar uma classe externa. São os <b>serviços requeridos</b>.</li>
+<li>Portas são independentes de tecnologia, por isso ficam no hexágono interior. Sistemas externos usam tecnologia (REST, gRPC, GraphQL; SQL, NoSQL; Web, mobile).</li>
+<li><b>Adaptadores</b> ficam no lado externo do hexágono e traduzem chamadas entre domínio e infraestrutura: adaptador REST, de banco, de fila.</li>
+</ul>
+<p><b>Fluxo:</b> o domínio chama portas, adaptadores implementam portas, o domínio fica isolado. Cockburn tentou renomear para "Arquitetura baseada em Portas e Adaptadores", mas o nome Hexagonal pegou.</p>
+
+<p><b>Diagrama (baseado na figura de fluxo dos slides):</b></p>
+<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:0.85em;margin:10px 0">
+  <div style="display:flex;flex-direction:column;gap:8px">
+    <div style="border:1px solid #555;padding:6px;background:#fff">Interface Web <small>(REST)</small></div>
+    <div style="border:1px solid #555;padding:6px;background:#fff">App mobile <small>(GraphQL)</small></div>
+    <div style="border:1px solid #555;padding:6px;background:#fff">Sistema externo <small>(gRPC)</small></div>
+  </div>
+  <div>&rarr;</div>
+  <div style="clip-path:polygon(18% 0,82% 0,100% 50%,82% 100%,18% 100%,0 50%);background:#cfe8b5;padding:20px 8%;text-align:center;font-size:13px;max-width:100%">
+    <div style="font-weight:bold;margin-bottom:6px">Adaptadores (lado externo)</div>
+    <div style="display:flex;gap:6px;align-items:center;min-width:0">
+      <div style="display:flex;flex-direction:column;gap:6px">
+        <div style="border:1px solid #555;background:#fff;padding:4px">Adaptador REST</div>
+        <div style="border:1px solid #555;background:#fff;padding:4px">Adaptador GraphQL</div>
+        <div style="border:1px solid #555;background:#fff;padding:4px">Adaptador gRPC</div>
+      </div>
+      <div style="clip-path:polygon(15% 0,85% 0,100% 50%,85% 100%,15% 100%,0 50%);background:#ffe9a8;padding:12px 10%;min-width:0">
+        <div style="border:1px solid #555;background:#fff;padding:4px;margin:4px 0">Porta de entrada<br><small>serviços providos</small></div>
+        <div style="border:2px solid #333;background:#fff;padding:6px;margin:4px 0;font-weight:bold">Classes de domínio</div>
+        <div style="border:1px solid #555;background:#fff;padding:4px;margin:4px 0">Porta de saída<br><small>serviços requeridos</small></div>
+        <div><small>hexágono interior: sem tecnologia</small></div>
+      </div>
+      <div style="border:1px solid #555;background:#fff;padding:4px">Adaptador de banco</div>
+    </div>
+  </div>
+  <div>&rarr;</div>
+  <div style="border:1px solid #555;padding:6px;background:#fff">Banco de dados <small>(SQL)</small></div>
+</div>
+
+<div class="exemplo"><b>Exemplo dos slides (biblioteca):</b> domínio = Livro, Usuário, Empréstimo; porta de entrada = serviço de empréstimo; porta de saída = persistência; adaptadores = REST e banco.
+<pre><code>// ---- hexágono interior (sem import de framework) ----
+public interface ServicoEmprestimo {            // porta de ENTRADA
+  Emprestimo emprestar(long usuarioId, String isbn);
+}
+public interface RepositorioEmprestimos {       // porta de SAÍDA
+  void salvar(Emprestimo e);
+  int emprestimosAtivos(long usuarioId);
+}
+public class ServicoEmprestimoImpl implements ServicoEmprestimo {
+  private final RepositorioEmprestimos repo;
+  public ServicoEmprestimoImpl(RepositorioEmprestimos repo) { this.repo = repo; }
+  public Emprestimo emprestar(long usuarioId, String isbn) {
+    if (repo.emprestimosAtivos(usuarioId) &gt;= 3)       // regra de negócio
+      throw new LimiteEmprestimos();
+    Emprestimo e = new Emprestimo(usuarioId, isbn);
+    repo.salvar(e);
+    return e;
+  }
+}
+
+// ---- lado externo: adaptadores ----
+@RestController                                  // adaptador REST -&gt; porta de entrada
+class EmprestimoController {
+  private final ServicoEmprestimo servico;
+  @PostMapping("/emprestimos")
+  EmprestimoDTO post(@RequestBody PedidoDTO p) {
+    return EmprestimoDTO.de(servico.emprestar(p.usuarioId(), p.isbn()));
+  }
+}
+class RepositorioEmprestimosPostgres implements RepositorioEmprestimos { /* SQL aqui */ }
+class RepositorioEmprestimosEmMemoria implements RepositorioEmprestimos { /* para testes */ }</code></pre>
+O limite de 3 empréstimos é inventado para o exemplo. O ponto é que o teste da regra usa o repositório em memória: "testes sem infraestrutura".</div>
+<p><b>Vantagens:</b> domínio isolado, testes sem infraestrutura, troca fácil de tecnologia, suporte a múltiplas interfaces. <b>Desafios:</b> mais abstrações, complexidade maior, exige disciplina.</p>
+<div class="atencao"><b>Atenção:</b> o número 6 não tem significado. O hexágono é só um desenho para ter vários lados onde encaixar adaptadores. Outra confusão comum: a porta é a <b>interface</b> (fica dentro); o adaptador é a <b>implementação ligada à tecnologia</b> (fica fora).</div>
+</div>
+
+<!-- ========== LIMPA ========== -->
+<div class="conceito">
+<p class="mais"><a href="../tvc2/#aula-10">Ver a Unidade 10 inteira no guia da TVC2 →</a></p></div></details></div><h2 id="u-princ">📐 Princípios e padrões <small>· 2 questões</small></h2><p class="note">Regra da cola: <b>chamadas encadeadas</b> <code>a.b().c().d()</code> = viola <b>Demeter</b>. Segundo a Gabi, as questões de padrões (<b>26 e 27</b>) não caem.</p><div class="q" id="q20">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">20</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Qual princípio de projeto é violado por uma chamada como <code>bib.getAcervo().getAreaConhecimento("ES").getLivros().find("ESM").getNumExemplares();</code>? Qual mudança você faria na classe Biblioteca (tipo de bib) para remover essa violação?</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>Lei de Demeter</b>: "não fale com estranhos" — evite cadeias longas de chamadas.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>(a) <b>Demeter</b>: <b>longa cadeia de chamadas</b> de métodos.</li><li>(b) Criar em Biblioteca o método <b>getNumExemplares</b>: <code>bib.getNumExemplares("ES", "ESM");</code></li></ul></div></div>
-</div><div class="q" id="q23">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">23</span>Que princípio é violado e como alterar? <pre><code>void imprimeDataContratacao(Funcionario func) {
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <ul>
+          <li>Viola o <b>Princípio de Demeter</b>: é uma longa cadeia de chamadas, passando por objetos de passagem (Acervo, AreaConhecimento, lista de livros, Livro). O cliente fica dependente da estrutura interna da biblioteca, o que quebra o encapsulamento.</li>
+          <li>Mudança: criar em <code>Biblioteca</code> um método que entregue diretamente o que o cliente precisa, escondendo o caminho interno.</li>
+        </ul>
+<pre><code>class Biblioteca {
+  private Acervo acervo;
+
+  public int getNumExemplares(String area, String livro) {
+    return acervo.getNumExemplares(area, livro);  // cada classe delega ao seu vizinho
+  }
+}
+
+// cliente
+int n = bib.getNumExemplares("ES", "ESM");</code></pre>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 8</summary><div class="teob"><h3>(5) Princípio de Demeter</h3>
+    <p>Demeter é o nome de um grupo de pesquisa americano. Evite longas cadeias de chamadas de métodos, como <code>obj.getA().getB().getC().getD().getOqueEuPreciso()</code>; os objetos do meio são "objetos de passagem". Motivo: longas cadeias quebram o encapsulamento. "Não quero passar por A, B, C... até obter o que eu preciso."</p>
+<pre><code>class PrincipioDemeter {
+  T1 attr;
+  void f1() { ... }
+
+  void m1(T2 p) {      // segue Demeter
+    f1();              // caso 1: própria classe
+    p.f2();            // caso 2: parâmetro
+    new T3().f3();     // caso 3: criado pelo método
+    attr.f4();         // caso 4: atributo da classe
+  }
+
+  void m2(T4 p) {      // viola Demeter
+    p.getX().getY().getZ().doSomething();
+  }
+}</code></pre>
+    <div class="exemplo"><b>Exemplo real:</b> em React, <code>props.user.address.city.name</code> passado por vários níveis faz o componente conhecer a estrutura inteira de <code>user</code>. Passar só <code>cityName</code> reduz o que ele precisa saber.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questões 20 e 23. Na 23 não há cadeia com vários pontos numa linha, mas a regra é a mesma: o método chama <code>format()</code> num objeto que não é parâmetro, atributo nem criado por ele.</div>
+    <div class="atencao"><b>Atenção:</b> Demeter está ligado a <b>Ocultamento de Informação</b> (slide 49), e não a coesão. E não é proibição absoluta: casos isolados podem ser justificados (slide 78).</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-8">Ver a Unidade 8 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q23">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">23</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Qual princípio de projeto é violado pelo código abaixo? Como alterar o método para atender a esse princípio?</p>
+<pre><code>void imprimeDataContratacao(Funcionario func) {
   Date data = func.getDataContratacao();
   String msg = data.format();
   System.out.println(msg);
-}</code></pre></div>
+}</code></pre>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>Demeter</b>: o método só chama métodos da própria classe, de <b>parâmetros</b>, de objetos que <b>ele cria</b> e de <b>atributos</b>.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Viola <b>Demeter</b>: <code>data</code> não é parâmetro, nem atributo, nem criado ali — equivale a <code>func.getDataContratacao().format()</code>.</li><li>Solução: <b>receber a data como parâmetro</b> e renomear: <code>void imprimeData(Data data) { System.out.println(data.format()); }</code></li></ul></div></div>
-</div><div class="q" id="q22">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">22</span>Calculadora.isPrimo(n) vale para 0 ≤ n &lt; 10000; a subclasse CalculadoraRapida só vale para 1000 ≤ n &lt; 9000. Que princípio é violado?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <ul>
+          <li>Viola o <b>Princípio de Demeter</b>. O método chama <code>format()</code> em <code>data</code>, que não é parâmetro, não é atributo da classe, não foi criado pelo método e não é a própria classe. É o mesmo que <code>func.getDataContratacao().format()</code>, só que em duas linhas.</li>
+          <li>Correção: o método deve receber diretamente o objeto de que precisa (a data).</li>
+        </ul>
+<pre><code>void imprimeDataContratacao(Date data) {
+  String msg = data.format();   // data agora é parâmetro: permitido
+  System.out.println(msg);
+}
+
+// chamada
+imprimeDataContratacao(func.getDataContratacao());</code></pre>
+        <p>Alternativa: <code>Funcionario</code> oferecer <code>getDataContratacaoFormatada()</code> e o método chamar só esse método do parâmetro.</p>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 8</summary><div class="teob"><h3>(5) Princípio de Demeter</h3>
+    <p>Demeter é o nome de um grupo de pesquisa americano. Evite longas cadeias de chamadas de métodos, como <code>obj.getA().getB().getC().getD().getOqueEuPreciso()</code>; os objetos do meio são "objetos de passagem". Motivo: longas cadeias quebram o encapsulamento. "Não quero passar por A, B, C... até obter o que eu preciso."</p>
+<pre><code>class PrincipioDemeter {
+  T1 attr;
+  void f1() { ... }
+
+  void m1(T2 p) {      // segue Demeter
+    f1();              // caso 1: própria classe
+    p.f2();            // caso 2: parâmetro
+    new T3().f3();     // caso 3: criado pelo método
+    attr.f4();         // caso 4: atributo da classe
+  }
+
+  void m2(T4 p) {      // viola Demeter
+    p.getX().getY().getZ().doSomething();
+  }
+}</code></pre>
+    <div class="exemplo"><b>Exemplo real:</b> em React, <code>props.user.address.city.name</code> passado por vários níveis faz o componente conhecer a estrutura inteira de <code>user</code>. Passar só <code>cityName</code> reduz o que ele precisa saber.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questões 20 e 23. Na 23 não há cadeia com vários pontos numa linha, mas a regra é a mesma: o método chama <code>format()</code> num objeto que não é parâmetro, atributo nem criado por ele.</div>
+    <div class="atencao"><b>Atenção:</b> Demeter está ligado a <b>Ocultamento de Informação</b> (slide 49), e não a coesão. E não é proibição absoluta: casos isolados podem ser justificados (slide 78).</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-8">Ver a Unidade 8 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q22">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">22</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2"><code>Calculadora.isPrimo(n)</code> funciona para 0 &lt;= n &lt; 10000. A subclasse <code>CalculadoraRapida</code> redefine <code>isPrimo(n)</code> com um algoritmo mais eficiente, mas que só funciona para 1000 &lt;= n &lt; 9000. Qual princípio de projeto é violado? Justifique.</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>Substituição de Liskov</b>: subclasse deve funcionar <b>em qualquer lugar</b> onde a classe pai funciona.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>Liskov</b>. Por herança, CalculadoraRapida pode <b>substituir</b> Calculadora.</li><li>Mas a substituição falha: a subclasse aceita uma <b>faixa de valores mais estreita</b>. Ex.: o pai resolve 0 a 999, a filha não.</li></ul></div></div>
-</div><div class="q" id="q19">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">19</span>Sempre que uma tarefa mexe nas classes A e B (arquivos diferentes), o programador move B para o arquivo de A. Que propriedade melhora? Qual piora?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <ul>
+          <li>Viola o <b>Princípio de Substituição de Liskov</b>.</li>
+          <li>A subclasse redefine o método e oferece um serviço <b>menor</b> que o da classe base: aceita apenas 1000 a 8999, enquanto a base aceita 0 a 9999.</li>
+          <li>Um código feito para usar <code>Calculadora</code> (ex.: <code>calc.isPrimo(7)</code>) passa a falhar ou dar resultado errado se receber uma <code>CalculadoraRapida</code>. A substituição deixa de ser imperceptível.</li>
+          <li>É o mesmo caso do <code>ControleRemotoXYZ</code> (alcance de 5 m contra 10 m da base).</li>
+        </ul>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 8</summary><div class="teob"><h3>(7) Princípio de Substituição de Liskov</h3>
+    <p>Referência à Profa. Barbara Liskov. Define boas práticas para uso de herança, especificamente para a <b>redefinição de métodos em subclasses</b>. Um tipo A pode ser substituído por subclasses B1, B2, B3... desde que B ofereça os mesmos serviços de A: para um código feito para usar A, a troca por B deve ser "imperceptível".</p>
+<pre><code>class ControleRemoto { /* alcance de 10 m */ }
+class ControleRemotoPremium extends ControleRemoto { /* 20 m */ } // segue
+class ControleRemotoXYZ extends ControleRemoto { /* 5 m */ }      // viola</code></pre>
+    <p>O Premium entrega pelo menos o que a base prometia. O XYZ entrega menos: um cliente que confiava nos 10 m percebe a troca.</p>
+    <div class="atencao"><b>Atenção:</b> Liskov não proíbe a subclasse de mudar o comportamento; proíbe que ela ofereça <b>menos</b> do que a classe base. Fazer mais (alcance maior, aceitar mais entradas) é compatível.</div>
+  </div>
+
+  <div class="questoes"><p class="mais"><a href="../tvc2/#aula-8">Ver a Unidade 8 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q19">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">19</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Um programador, sempre que uma tarefa exige modificar duas classes A e B em arquivos diferentes, termina movendo B para o mesmo arquivo de A. Qual propriedade de projeto ele melhora? Qual é afetada de modo negativo? Justifique.</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>Acoplamento evolutivo (lógico)</b>: arquivos que mudam juntos. <b>Coesão de arquivo</b>: arquivo com uma responsabilidade.</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>Melhora</b>: diminui o <b>acoplamento evolutivo (lógico)</b> entre arquivos. Antes 2 arquivos mudavam, agora 1.</li><li><b>Piora</b>: diminui a <b>coesão</b> do arquivo de A — mais responsabilidades, <b>requisitos não relacionados</b> no mesmo arquivo.</li></ul></div></div>
-</div><div class="q" id="q17">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">17</span>Sistema de ~100 KLOC: proponha uma especificação com a pior coesão possível e o melhor acoplamento possível.</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <ul>
+          <li><b>Melhora o acoplamento</b> (entre arquivos/módulos): classes que mudam juntas têm acoplamento evolutivo (lógico). Colocando-as no mesmo arquivo, essa dependência deixa de cruzar módulos; uma mudança passa a ficar contida em um único arquivo.</li>
+          <li><b>Piora a coesão:</b> com o tempo, o arquivo acumula classes com responsabilidades diferentes e deixa de oferecer um único serviço. Repetindo a estratégia indefinidamente, o sistema tende a virar um único arquivo enorme, que é exatamente o cenário da Questão 17 (acoplamento mínimo, coesão péssima).</li>
+          <li>Correção melhor: se A e B sempre mudam juntas, investigar o motivo (acoplamento ruim, responsabilidade espalhada) e corrigir o projeto, por exemplo fazendo A usar B só via interface estável.</li>
+        </ul>
+        <p>(Resposta construída a partir dos conceitos de coesão e acoplamento evolutivo dos slides; não há gabarito oficial.)</p>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 8</summary><div class="teob"><h3>Coesão</h3>
+    <p><b>Definição:</b> uma classe deve ter uma única função, isto é, oferecer um único serviço. Vale também para funções, métodos, pacotes.</p>
+<pre><code>// Contra-exemplo 1: função com duas funções
+float sin_or_cos(double x, int op) {
+  if (op == 1) "calcula e retorna seno de x"
+  else         "calcula e retorna cosseno de x"
+}
+
+// Contra-exemplo 2: Estacionamento guardando dados do gerente
+class Estacionamento {
+  private String nome_gerente;
+  private String fone_gerente;
+  private String cpf_gerente;
+  private String endereco_gerente;
+}  // deveria existir uma classe Gerente
+
+// Exemplo coeso: todos os métodos manipulam os elementos da pilha
+class Stack&lt;T&gt; {
+  boolean empty() { ... }
+  T pop() { ... }
+  push(T) { ... }
+  int size() { ... }
+}</code></pre>
+    <div class="exemplo"><b>Exemplo real:</b> um <code>utils.ts</code> com formatação de data, cálculo de frete e chamada HTTP é o caso clássico de baixa coesão: muda por motivos que não têm relação entre si.</div>
+  </div>
+
+  <div class="conceito">
+    <h3>Acoplamento (aceitável x ruim)</h3>
+    <p>Nenhuma classe é uma ilha: classes dependem umas das outras. A questão é a <b>qualidade</b> do acoplamento.</p>
+    <ul>
+      <li><b>Acoplamento aceitável:</b> A usa B e (1) B oferece um serviço útil para A, (2) B possui interface estável, (3) A só chama métodos da interface de B. Ex.: <code>Estacionamento</code> depende de <code>Hashtable</code>.</li>
+      <li><b>Acoplamento ruim:</b> a interface de B é instável, <b>ou</b> o uso não ocorre via interface de B.</li>
+    </ul>
+    <p>Como A fica acoplada a B sem usar a interface de B? Exemplo dos slides: B grava <code>"arq1.db"</code> e A lê o mesmo arquivo. Mudanças internas em B (formato do arquivo, deixar de salvar o dado) quebram A. Esse tipo também é chamado de <b>acoplamento evolutivo ou lógico</b>.</p>
+<pre><code>// Correção: A passa a usar a interface de B
+class B {
+  int total;
+  public int getTotal() { return total; }
+  private void g() { /* computa total e grava em "arq1" */ }
+}
+class A {
+  private void f(B b) {
+    int total = b.getTotal();
+  }
+}</code></pre>
+    <p><b>Recomendação:</b> maximize a coesão, minimize o acoplamento. Mas minimize (ou elimine) <b>principalmente o acoplamento ruim</b>.</p>
+    <div class="exemplo"><b>Exemplo real:</b> dois microsserviços lendo a mesma tabela do banco: o time dono da tabela renomeia uma coluna e o outro serviço quebra. É acoplamento ruim, porque não passa por interface (API) nenhuma.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questões 17, 18 e 19 da lista exploram a tensão entre coesão e acoplamento. Lembre que "acoplamento zero" e "coesão boa" puxam em direções opostas se levados ao extremo.</div>
+    <div class="atencao"><b>Atenção:</b> acoplamento não é ruim por si só. Depender de uma classe estável da biblioteca padrão é aceitável. O alvo é o acoplamento a interfaces instáveis ou a detalhes internos.</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-8">Ver a Unidade 8 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q17">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">17</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Suponha que você ficou responsável pela implementação de um sistema que vai demandar ~100 KLOC. Proponha hipoteticamente uma especificação para sua implementação que tenha a pior coesão possível, mas, ao mesmo tempo, tenha o melhor acoplamento possível.</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>Coesão</b> = módulo faz uma coisa só (quer alta). <b>Acoplamento</b> = dependência entre módulos (quer baixo).</div>
 <div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Pior coesão: <b>todas as 100 KLOC num único método main</b>.</li><li>Esse caso tem <b>acoplamento mínimo</b>: só existe um método, <b>não há outro para se acoplar</b>.</li></ul></div></div>
-</div><h2 id="u-qual">✅ Qualidade <small>· 1 questão</small></h2><p class="note">Nenhuma de qualidade tem gabarito oficial: respostas montadas pelos slides.</p><div class="q" id="q4">
-<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">4</span>Aponte e defina as 5 métricas estáticas vistas em aula + mais 2 usadas atualmente.</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <ul>
+          <li>Implementar os ~100 KLOC em <b>um único módulo</b>: uma única classe (ou um único arquivo/função) contendo todo o sistema.</li>
+          <li><b>Pior coesão:</b> a classe deixa de oferecer "um único serviço"; ela faz tudo (interface, regras de negócio, persistência), com responsabilidades sem relação entre si.</li>
+          <li><b>Melhor acoplamento:</b> como não existem outras classes, não há dependências entre módulos; o acoplamento entre módulos é zero.</li>
+          <li>Conclusão: o exemplo mostra que coesão e acoplamento precisam ser equilibrados. "Maximize a coesão, minimize o acoplamento" não significa eliminar todo acoplamento; o objetivo é eliminar principalmente o acoplamento ruim.</li>
+        </ul>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 8</summary><div class="teob"><h3>Coesão</h3>
+    <p><b>Definição:</b> uma classe deve ter uma única função, isto é, oferecer um único serviço. Vale também para funções, métodos, pacotes.</p>
+<pre><code>// Contra-exemplo 1: função com duas funções
+float sin_or_cos(double x, int op) {
+  if (op == 1) "calcula e retorna seno de x"
+  else         "calcula e retorna cosseno de x"
+}
+
+// Contra-exemplo 2: Estacionamento guardando dados do gerente
+class Estacionamento {
+  private String nome_gerente;
+  private String fone_gerente;
+  private String cpf_gerente;
+  private String endereco_gerente;
+}  // deveria existir uma classe Gerente
+
+// Exemplo coeso: todos os métodos manipulam os elementos da pilha
+class Stack&lt;T&gt; {
+  boolean empty() { ... }
+  T pop() { ... }
+  push(T) { ... }
+  int size() { ... }
+}</code></pre>
+    <div class="exemplo"><b>Exemplo real:</b> um <code>utils.ts</code> com formatação de data, cálculo de frete e chamada HTTP é o caso clássico de baixa coesão: muda por motivos que não têm relação entre si.</div>
+  </div>
+
+  <div class="conceito">
+    <h3>Acoplamento (aceitável x ruim)</h3>
+    <p>Nenhuma classe é uma ilha: classes dependem umas das outras. A questão é a <b>qualidade</b> do acoplamento.</p>
+    <ul>
+      <li><b>Acoplamento aceitável:</b> A usa B e (1) B oferece um serviço útil para A, (2) B possui interface estável, (3) A só chama métodos da interface de B. Ex.: <code>Estacionamento</code> depende de <code>Hashtable</code>.</li>
+      <li><b>Acoplamento ruim:</b> a interface de B é instável, <b>ou</b> o uso não ocorre via interface de B.</li>
+    </ul>
+    <p>Como A fica acoplada a B sem usar a interface de B? Exemplo dos slides: B grava <code>"arq1.db"</code> e A lê o mesmo arquivo. Mudanças internas em B (formato do arquivo, deixar de salvar o dado) quebram A. Esse tipo também é chamado de <b>acoplamento evolutivo ou lógico</b>.</p>
+<pre><code>// Correção: A passa a usar a interface de B
+class B {
+  int total;
+  public int getTotal() { return total; }
+  private void g() { /* computa total e grava em "arq1" */ }
+}
+class A {
+  private void f(B b) {
+    int total = b.getTotal();
+  }
+}</code></pre>
+    <p><b>Recomendação:</b> maximize a coesão, minimize o acoplamento. Mas minimize (ou elimine) <b>principalmente o acoplamento ruim</b>.</p>
+    <div class="exemplo"><b>Exemplo real:</b> dois microsserviços lendo a mesma tabela do banco: o time dono da tabela renomeia uma coluna e o outro serviço quebra. É acoplamento ruim, porque não passa por interface (API) nenhuma.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questões 17, 18 e 19 da lista exploram a tensão entre coesão e acoplamento. Lembre que "acoplamento zero" e "coesão boa" puxam em direções opostas se levados ao extremo.</div>
+    <div class="atencao"><b>Atenção:</b> acoplamento não é ruim por si só. Depender de uma classe estável da biblioteca padrão é aceitável. O alvo é o acoplamento a interfaces instáveis ou a detalhes internos.</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-8">Ver a Unidade 8 inteira no guia da TVC2 →</a></p></div></details></div><h2 id="u-qual">✅ Qualidade <small>· 1 questão</small></h2><p class="note">Nenhuma de qualidade tem gabarito oficial: respostas montadas pelos slides.</p><div class="q" id="q4">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">4</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Aponte e defina as 5 métricas estáticas de qualidade de software apresentadas em sala de aula. Acrescente à sua resposta mais 2 métricas estáticas de qualidade de software usadas atualmente.</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>Métrica estática</b>: medida tirada do código/documento <b>sem executar</b> o programa.</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li><b>Fan-in/Fan-out</b>: nº de funções que chamam X / que X chama.</li><li><b>Complexidade ciclomática</b>: complexidade de controle (nº de decisões + 1).</li><li><b>Índice FOG</b>: tamanho médio de palavras e frases de um documento (legibilidade).</li><li><b>Profundidade da árvore de herança</b>: nº de níveis de herança.</li><li><b>Acoplamento entre classes</b>: quantas classes usam métodos de outras.</li><li>Mais 2 (fora dos slides): <b>LOC</b> (linhas de código) e <b>LCOM</b> (falta de coesão entre métodos).</li></ul></div></div>
-</div><div class="q" id="q2">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">2</span>O que é o Padrão CMMI no contexto de qualidade de software?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <p><b>As 5 dos slides:</b></p>
+        <ol>
+          <li><b>Fan-in / Fan-out:</b> fan-in é o número de funções/métodos que chamam uma função X; fan-out é o número de funções chamadas por X.</li>
+          <li><b>Complexidade ciclomática:</b> medida da complexidade de controle de um programa ou do fluxo de atividades de um modelo (número de caminhos independentes; decisões + 1).</li>
+          <li><b>Índice FOG:</b> medida do comprimento médio de palavras e sentenças em um documento; indica legibilidade.</li>
+          <li><b>Profundidade da árvore de herança:</b> número de níveis na árvore de herança das classes.</li>
+          <li><b>Acoplamento entre classes de objetos:</b> quantas classes possuem métodos que usam métodos de outras classes.</li>
+        </ol>
+        <p><b>Mais 2 (atuais):</b></p>
+        <ul>
+          <li><b>LCOM (Lack of Cohesion in Methods):</b> mede a falta de coesão de uma classe, contando pares de métodos que não acessam atributos em comum. Valor alto indica classe com responsabilidades demais.</li>
+          <li><b>LOC (Lines of Code):</b> tamanho do programa em linhas de código; indicador de esforço e de manutenibilidade, usado por ferramentas como o SonarQube.</li>
+        </ul>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 7</summary><div class="teob"><h3>Métricas de qualidade: definição, estáticas e dinâmicas</h3>
+    <p><b>Métrica de software (slide):</b> qualquer tipo de medida que se relaciona com um sistema, processo ou documentação relacionada ao software. Ex.: linhas de código, número de pessoas-dias para desenvolver um componente. Usos: <b>prever</b> atributos do produto ou <b>controlar</b> o processo; atribuir valor a atributos de qualidade (ex.: complexidade ciclomática → manutenibilidade).</p>
+    <p><b>Atributos internos × externos:</b> o que se mede diretamente é interno (profundidade da árvore de herança, complexidade ciclomática, tamanho em linhas de código, número de mensagens de erro, extensão do manual do usuário). O que interessa ao cliente é externo (manutenibilidade, confiabilidade, reusabilidade, usabilidade). A métrica interna serve de indicador indireto do atributo externo.</p>
+    <table>
+      <tr><th></th><th>Estáticas</th><th>Dinâmicas</th></tr>
+      <tr><td>Coletadas em</td><td>representações do sistema (código, modelos, documentos)</td><td>programa em execução</td></tr>
+      <tr><td>Relação com atributos de qualidade</td><td>indireta</td><td>direta</td></tr>
+      <tr><td>Ajudam a avaliar</td><td>compreensibilidade, complexidade, manutenibilidade</td><td>eficiência e confiabilidade</td></tr>
+      <tr><td>Exemplos</td><td>complexidade ciclomática, DIT, fan-in</td><td>tempo de resposta (desempenho), número de falhas (confiabilidade)</td></tr>
+    </table>
+    <div class="exemplo"><b>Exemplo:</b> o SonarQube rodando no CI mede complexidade e acoplamento sem executar o sistema (estática). O Datadog medindo a latência p95 da API em produção é dinâmica.</div>
+    <div class="atencao"><b>Atenção:</b> "estática" não quer dizer "medida uma vez só"; quer dizer que não precisa executar o programa. Cobertura de testes, por exemplo, exige executar os testes, então não é estática.</div>
+  </div>
+
+  <div class="conceito">
+    <h3>As 5 métricas estáticas dos slides (e mais 2)</h3>
+    <ol>
+      <li><b>FAN-IN / FAN-OUT:</b> fan-in de X = número de funções/métodos que chamam X. Fan-out de X = número de funções que X chama <i>(complemento: o slide define só o fan-in)</i>. Fan-in alto: mudar X tem grande impacto. Fan-out alto: X depende de muita coisa, é complexo.</li>
+      <li><b>Complexidade ciclomática:</b> medida da complexidade de controle de um programa ou do fluxo de atividades de um modelo. <i>(complemento: na prática, número de decisões + 1.)</i></li>
+      <li><b>Índice FOG:</b> medida do comprimento médio de palavras e sentenças em um documento. Quanto maior, mais difícil de ler.</li>
+      <li><b>Profundidade da árvore de herança (DIT):</b> número de níveis na árvore de herança das classes. Muito profunda = difícil entender uma classe folha.</li>
+      <li><b>Acoplamento entre classes de objetos (CBO):</b> quantas classes possuem métodos que usam métodos de outras classes.</li>
+    </ol>
+    <pre><code>// Complexidade ciclomática = decisões + 1
+function frete(peso: number, uf: string, premium: boolean): number {
+  if (premium) return 0;            // decisão 1
+  if (peso &gt; 30) return 80;          // decisão 2
+  return uf === "MG" ? 15 : 25;     // decisão 3
+}
+// CC = 3 + 1 = 4  -&gt; 4 caminhos independentes, pede pelo menos 4 testes</code></pre>
+    <p><b>Mais 2 métricas usadas hoje (complemento, ver "Engenharia de Software Moderna", cap. 5):</b></p>
+    <ul>
+      <li><b>LCOM (Lack of Cohesion in Methods):</b> mede falta de coesão. Conta pares de métodos que não usam atributos em comum. LCOM alto = classe fazendo coisas demais (viola Responsabilidade Única).</li>
+      <li><b>LOC (linhas de código) / tamanho:</b> tamanho do programa em linhas de código. Simples, mas é um indicador grosseiro de esforço e de manutenibilidade. Aparece no slide como exemplo de métrica.</li>
+    </ul>
+    <p>Alternativas válidas se quiser variar: número de métodos por classe (NOM), percentual de código duplicado.</p>
+    <div class="prova"><b>Como cai na prova:</b> Questão 4. Liste as 5 com nome e definição do slide, e acrescente 2 marcadas como atuais. Não confunda nome: é "Índice FOG", não "fator".</div>
+    <div class="atencao"><b>Atenção:</b> DIT mede herança (vertical); CBO mede uso entre classes (horizontal). E complexidade ciclomática mede fluxo de controle, não tamanho: uma função de 200 linhas sem <code>if</code> tem CC = 1.</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-7">Ver a Unidade 7 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q2">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">2</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">O que é o Padrão CMMI no contexto de qualidade de software?</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>CMMI</b> (Capability Maturity Model Integration): modelo que mede a <b>maturidade do processo</b> de uma empresa em níveis.</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li><b>Modelo de referência</b> para avaliar o <b>nível de maturidade dos processos</b> da organização.</li><li>Reúne práticas genéricas e específicas de engenharia de <b>sistemas, software e hardware</b>.</li><li><b>5 níveis</b>: 1 Inicial, 2 Gerenciado, 3 Definido, 4 Quantitativamente Gerenciado, 5 Otimização.</li></ul></div></div>
-</div><div class="q" id="q3">
-<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">3</span>Por que o modelo brasileiro MPS.Br é compatível com o padrão CMMI?</div>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <p>O CMMI (Capability Maturity Model – Integration) é um modelo de referência para avaliar o nível de maturidade dos processos das organizações e de seus softwares. Reúne práticas genéricas e específicas necessárias à maturidade em 3 disciplinas: engenharia de sistemas, de software e de hardware. Classifica a organização em 5 níveis de maturidade:</p>
+        <ol>
+          <li>Inicial: processos imprevisíveis, pouco controlados e reativos;</li>
+          <li>Gerenciado: processos caracterizados por projeto, ações frequentemente reativas;</li>
+          <li>Definido: processos caracterizados para a organização e proativos;</li>
+          <li>Quantitativamente Gerenciado: processos medidos e controlados;</li>
+          <li>Otimização: foco contínuo na melhoria dos processos.</li>
+        </ol>
+        <p>A versão atual é a 3.0 (2023), com foco em segurança cibernética, governança de dados e práticas ágeis, organizada nas categorias Fazendo, Gerenciando, Habilitando e Melhorando.</p>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 7</summary><div class="teob"><h3>Padrão CMMI</h3>
+    <p><b>Definição (slide):</b> <i>Capability Maturity Model – Integration</i>, modelo de referência para avaliar o nível de maturidade das organizações e seus softwares. Contém práticas (genéricas ou específicas) necessárias à maturidade em 3 disciplinas: engenharia de sistemas, engenharia de software e engenharia de hardware. As áreas de processo são iguais; os níveis de maturidade é que diferem.</p>
+    <p>A versão atual é a <b>3.0</b>, lançada em <b>2023</b>, com foco em segurança cibernética, governança de dados e práticas ágeis.</p>
+    <table>
+      <tr><th>Nível</th><th>Nome</th><th>O que caracteriza (slide)</th></tr>
+      <tr><td>1</td><td>Inicial</td><td>Processos imprevisíveis, pouco controlados e reativos</td></tr>
+      <tr><td>2</td><td>Gerenciado</td><td>Processos caracterizados por <b>projeto</b>; ações frequentemente reativas</td></tr>
+      <tr><td>3</td><td>Definido</td><td>Processos caracterizados para a <b>organização</b> e proativos</td></tr>
+      <tr><td>4</td><td>Quantitativamente Gerenciado</td><td>Processos são medidos e controlados</td></tr>
+      <tr><td>5</td><td>Otimização</td><td>Foco contínuo na melhoria dos processos</td></tr>
+    </table>
+    <p><b>Áreas de categoria (slides):</b> Fazendo (entrega e gerenciamento de serviços, engenharia e desenvolvimento de produtos, garantia da qualidade, seleção e gerenciamento de fornecedores); Gerenciando (resiliência do negócio, força de trabalho, planejamento e gerenciamento do trabalho); Habilitando (dados, segurança e proteção, apoio à implementação); Melhorando (melhoria de performance, sustentação de hábito e persistência).</p>
+    <p><b>Domínios (slide):</b> Dados, Desenvolvimento, Pessoas, Proteção, Segurança, Serviços, Fornecedores, Virtual.</p>
+    <div class="exemplo"><b>Exemplo:</b> no nível 2, cada time faz seu próprio processo de deploy; funciona, mas depende do projeto. No nível 3, a empresa tem um processo único documentado que todos os times seguem. No nível 4, ela mede o processo (ex.: tempo médio de correção de defeito) e controla pelos números.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questão 2 da lista ("O que é o CMMI"). Defina, cite as 3 disciplinas, os 5 níveis de maturidade e a versão 3.0 (2023).</div>
+    <div class="atencao"><b>Atenção:</b> CMMI avalia a maturidade do <b>processo da organização</b>, não testa o produto. Não confunda com ISO 9001 (sistema de gestão da qualidade geral, certificável) nem com métricas de código. E o nível 2 é "Gerenciado"; o 4 é "Quantitativamente Gerenciado".</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-7">Ver a Unidade 7 inteira no guia da TVC2 →</a></p></div></details></div><div class="q" id="q3">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">3</span><span class="of2">enunciado completo da lista oficial</span><p class="enun2">Por que o modelo brasileiro de qualidade de software MPS.Br é compatível com o padrão CMMI?</p>
+      </div>
 <div class="c"><div class="lab">Conceito</div><b>MPS.Br</b>: versão brasileira de modelo de maturidade (Softex), com degraus menores para empresas brasileiras.</div>
 <div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Mesma <b>base normativa</b>: <b>ISO/IEC 12207</b> e <b>ISO/IEC 15504</b>; mesmo objetivo: <b>maturidade do processo</b>.</li><li>Seus <b>7 níveis (G a A)</b> se <b>mapeiam</b> nos do CMMI: G-F ≈ 2; E-D-C ≈ 3; B ≈ 4; A ≈ 5.</li><li>Degraus menores = mais acessível a pequenas empresas, mas equivalente ao CMMI.</li></ul></div></div>
-</div><p style="text-align:center;font-size:13px;color:#666"><a href="../lista2/">Lista 2 completa (38 questões)</a></p></main>
+<div class="r"><div class="lab">Resposta explicada, passo a passo</div><div class="ans full">
+        <ul>
+          <li>Porque o MPS.Br foi construído sobre as mesmas bases normativas internacionais (ISO/IEC 12207 e ISO/IEC 15504) e com o mesmo objetivo do CMMI: avaliar e melhorar a maturidade do processo de software.</li>
+          <li>Seus 7 níveis de maturidade (G a A) são mapeados para os níveis do CMMI: G e F ≈ nível 2; E, D e C ≈ nível 3; B ≈ nível 4; A ≈ nível 5.</li>
+          <li>Assim, uma empresa avaliada no MPS.Br tem processos equivalentes a um nível CMMI, mas sobe por degraus menores e com custo mais acessível às empresas brasileiras (complemento: o slide não fala de custo).</li>
+          <li>O modelo é composto por MR-MPS (modelo de referência), MA-MPS (método de avaliação) e MN-MPS (modelo de negócio).</li>
+        </ul>
+      </div></div><details class="teo"><summary>Matéria por trás da questão · Unidade 7</summary><div class="teob"><h3>Padrão CMMI</h3>
+    <p><b>Definição (slide):</b> <i>Capability Maturity Model – Integration</i>, modelo de referência para avaliar o nível de maturidade das organizações e seus softwares. Contém práticas (genéricas ou específicas) necessárias à maturidade em 3 disciplinas: engenharia de sistemas, engenharia de software e engenharia de hardware. As áreas de processo são iguais; os níveis de maturidade é que diferem.</p>
+    <p>A versão atual é a <b>3.0</b>, lançada em <b>2023</b>, com foco em segurança cibernética, governança de dados e práticas ágeis.</p>
+    <table>
+      <tr><th>Nível</th><th>Nome</th><th>O que caracteriza (slide)</th></tr>
+      <tr><td>1</td><td>Inicial</td><td>Processos imprevisíveis, pouco controlados e reativos</td></tr>
+      <tr><td>2</td><td>Gerenciado</td><td>Processos caracterizados por <b>projeto</b>; ações frequentemente reativas</td></tr>
+      <tr><td>3</td><td>Definido</td><td>Processos caracterizados para a <b>organização</b> e proativos</td></tr>
+      <tr><td>4</td><td>Quantitativamente Gerenciado</td><td>Processos são medidos e controlados</td></tr>
+      <tr><td>5</td><td>Otimização</td><td>Foco contínuo na melhoria dos processos</td></tr>
+    </table>
+    <p><b>Áreas de categoria (slides):</b> Fazendo (entrega e gerenciamento de serviços, engenharia e desenvolvimento de produtos, garantia da qualidade, seleção e gerenciamento de fornecedores); Gerenciando (resiliência do negócio, força de trabalho, planejamento e gerenciamento do trabalho); Habilitando (dados, segurança e proteção, apoio à implementação); Melhorando (melhoria de performance, sustentação de hábito e persistência).</p>
+    <p><b>Domínios (slide):</b> Dados, Desenvolvimento, Pessoas, Proteção, Segurança, Serviços, Fornecedores, Virtual.</p>
+    <div class="exemplo"><b>Exemplo:</b> no nível 2, cada time faz seu próprio processo de deploy; funciona, mas depende do projeto. No nível 3, a empresa tem um processo único documentado que todos os times seguem. No nível 4, ela mede o processo (ex.: tempo médio de correção de defeito) e controla pelos números.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questão 2 da lista ("O que é o CMMI"). Defina, cite as 3 disciplinas, os 5 níveis de maturidade e a versão 3.0 (2023).</div>
+    <div class="atencao"><b>Atenção:</b> CMMI avalia a maturidade do <b>processo da organização</b>, não testa o produto. Não confunda com ISO 9001 (sistema de gestão da qualidade geral, certificável) nem com métricas de código. E o nível 2 é "Gerenciado"; o 4 é "Quantitativamente Gerenciado".</div>
+  </div>
+
+  <div class="conceito">
+    <h3>Norma MPS.Br</h3>
+    <p><b>Definição (slide):</b> Melhoria de Processos do Software Brasileiro (Softex). Composto pelo Programa MPS.BR de melhoria da qualidade e por um modelo de qualidade de processo (modelo MPS). Baseado nas normas <b>ISO/IEC 12207 e 15504</b> e <b>compatível com o CMMI</b>. Tem 3 partes:</p>
+    <ul>
+      <li><b>MR-MPS:</b> Modelo de Referência para melhoria do processo de software;</li>
+      <li><b>MA-MPS:</b> Método de Avaliação;</li>
+      <li><b>MN-MPS:</b> Modelo de Negócio.</li>
+    </ul>
+    <p><b>Níveis do MR-MPS (figura do slide), do menos ao mais maduro, com a relação com o CMMI:</b></p>
+    <table>
+      <tr><th>MPS.Br</th><th>Nome</th><th>Relação com CMMI (figura)</th></tr>
+      <tr><td>G</td><td>Parcialmente Gerenciado</td><td rowspan="2">nível 2</td></tr>
+      <tr><td>F</td><td>Gerenciado</td></tr>
+      <tr><td>E</td><td>Parcialmente Definido</td><td rowspan="3">nível 3</td></tr>
+      <tr><td>D</td><td>Largamente Definido</td></tr>
+      <tr><td>C</td><td>Definido</td></tr>
+      <tr><td>B</td><td>Gerenciado Quantitativamente</td><td>nível 4</td></tr>
+      <tr><td>A</td><td>Em Otimização</td><td>nível 5</td></tr>
+    </table>
+    <div class="exemplo"><b>Exemplo:</b> uma software house de Juiz de Fora que não tem como pagar uma avaliação CMMI começa pelo nível G do MPS.Br. São degraus menores (7 contra 4 acima do nível 1), o que permite mostrar progresso mais cedo.</div>
+    <div class="prova"><b>Como cai na prova:</b> Questão 3 ("Por que o MPS.Br é compatível com o CMMI?"). A resposta vem da base comum (ISO/IEC 12207 e 15504) e do mapeamento de níveis: G-F ≈ 2, E-D-C ≈ 3, B ≈ 4, A ≈ 5.</div>
+    <div class="atencao"><b>Atenção:</b> no MPS.Br a ordem é invertida em relação à intuição: <b>G é o nível inicial e A o mais alto</b>. E MPS.Br não substitui o CMMI por ser "outro assunto": é o mesmo tipo de modelo (maturidade de processo), adaptado à realidade das empresas brasileiras.</div>
+  </div>
+
+  <div class="conceito">
+    <p class="mais"><a href="../tvc2/#aula-7">Ver a Unidade 7 inteira no guia da TVC2 →</a></p></div></details></div><p style="text-align:center;font-size:13px;color:#666"><a href="../lista2/">Lista 2 completa (38 questões)</a></p></main>
 <script>document.addEventListener('click',e=>{const a=e.target.closest('.ans');if(a&&document.body.classList.contains('hide'))a.classList.toggle('show')})</script>
 </body></html>
