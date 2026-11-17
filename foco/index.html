@@ -1,0 +1,117 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Foco TVC2 — o que deve cair</title><style>
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;background:#f4f4f7;color:#1d1d24}
+header{background:#24243a;color:#fff;padding:18px 16px}header h1{margin:0;font-size:20px}header p{margin:4px 0 0;font-size:13px;opacity:.8}
+.bar{position:sticky;top:0;background:#fff;border-bottom:1px solid #ddd;padding:8px 12px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;z-index:2}
+.bar a{font-size:13px;color:#24243a;text-decoration:none;border:1px solid #ccc;border-radius:14px;padding:3px 10px}
+.bar button{margin-left:auto;font-size:13px;border:0;border-radius:14px;padding:5px 12px;background:#24243a;color:#fff}
+main{max-width:760px;margin:0 auto;padding:12px}
+h2{font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:#666;margin:22px 4px 8px}
+.q{background:#fff;border-radius:10px;padding:14px;margin:0 0 12px;box-shadow:0 1px 2px #0001;scroll-margin-top:52px}
+.lab{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:10px 0 2px}
+.p .lab{color:#24243a}.c .lab{color:#2563a8}.r .lab{color:#1d7a46}
+.p{font-weight:600}.p .n{background:#24243a;color:#fff;border-radius:6px;padding:1px 7px;margin-right:6px;font-size:14px}
+.c{background:#eef4fb;border-radius:8px;padding:2px 10px 8px}.r ul{margin:2px 0 0;padding-left:20px}.r li{margin:3px 0}
+.tag{display:inline-block;font-size:11px;border-radius:10px;padding:1px 8px;margin-left:6px;vertical-align:middle;font-weight:600}
+.tag.of{background:#d8f2e1;color:#1d7a46}.tag.sl{background:#fdf0c8;color:#7a5a00}.tag.mix{background:#e3ecfa;color:#2563a8}
+pre{background:#f1f1f4;border-radius:6px;padding:8px;overflow-x:auto;font-size:13px;margin:6px 0}code{font-size:.92em;overflow-wrap:anywhere}pre code{overflow-wrap:normal}
+img{max-width:100%;border:1px solid #ddd;border-radius:6px;margin-top:8px}
+body.hide .r .ans{filter:blur(6px);cursor:pointer}body.hide .r .ans.show{filter:none}
+.pri{display:inline-block;font-size:11px;border-radius:10px;padding:1px 8px;margin-left:6px;letter-spacing:0;text-transform:none}
+.pri.cer{background:#c62828;color:#fff}.pri.top{background:#24243a;color:#fff}.pri.bk{background:#e5e5ea;color:#555}
+.note{background:#fff8e1;border-left:4px solid #f0b400;border-radius:6px;padding:8px 12px;margin:0 0 12px;font-size:14px}
+.split{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.split span{background:#ffffff22;border-radius:12px;padding:2px 10px;font-size:13px}
+h2 small{text-transform:none;letter-spacing:0;font-weight:400}</style></head><body>
+<header><h1>Foco TVC2 — o que deve cair</h1><p>Engenharia de Software · prova de 17/11 · 19 questões da Lista 2, por prioridade</p>
+<div class="split"><span>2 arquitetura</span><span>2 testes</span><span>2 princípios</span><span>1 qualidade</span></div></header>
+<div class="bar"><a href="#u-testes">Testes</a><a href="#u-arq">Arquitetura</a><a href="#u-princ">Princípios e padrões</a><a href="#u-qual">Qualidade</a><button onclick="document.body.classList.toggle('hide');this.textContent=document.body.classList.contains('hide')?'Mostrar respostas':'Me testar'">Me testar</button></div>
+<main><h2 id="u-testes">🧪 Testes <small>· 2 questões</small></h2><p class="note">O professor falou "se cair essa…" umas 5 vezes sobre a <b>34</b>.</p><div class="q" id="q34">
+<div class="p"><div class="lab">Pergunta <span class="pri cer">Vai cair</span></div><span class="n">34</span>Preencha cobertura de comandos (Cmd) e branches (Brch). <pre><code>void f(int x, int y) {
+  if (x > 0) {
+    x = 2 * x;
+    if (y > 0) {
+      y = 2 * y;
+    }
+  }
+}</code></pre>4 comandos, 4 branches.</div>
+<div class="c"><div class="lab">Conceito</div><b>Comandos</b> = linhas executadas; <b>branches</b> = lados (V/F) de cada if percorridos.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>f(0,0)</b>: Cmd <b>25%</b>, Brch <b>25%</b> (só o 1º if, lado F).</li><li><b>f(1,1)</b>: Cmd <b>100%</b>, Brch <b>50%</b> (só lados V).</li><li><b>f(0,0) e f(1,1)</b>: Cmd <b>100%</b>, Brch <b>75%</b> (falta o F do 2º if).</li></ul></div></div>
+</div><div class="q" id="q35">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">35</span>Conceito A se nota ≥ 90. Código: <code>if (nota > 90) return true; else return false;</code> (a) Há bug? Quando vira falha? (b) Testes com 95 e 85: cobertura de comandos e branches?</div>
+<div class="c"><div class="lab">Conceito</div><b>Defeito vs falha</b> + <b>valor de fronteira</b>: 100% de cobertura não garante achar o bug.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>(a) Sim (<code>&gt;</code> em vez de <code>&gt;=</code>). Falha <b>quando a nota é 90</b>.</li><li>(b) <b>Comandos = branches = 100%</b> — e mesmo assim o bug passa.</li></ul></div></div>
+</div><div class="q" id="q28">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">28</span>Por que testes são tanto verificação quanto validação? Qual tipo serve para verificar? E para validar?</div>
+<div class="c"><div class="lab">Conceito</div><b>Verificação</b>: "fiz certo?" (vs especificação). <b>Validação</b>: "fiz a coisa certa?" (vs o que o cliente quer).</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Depende da referência: <b>especificação</b> = verificação; <b>cliente</b> = validação.</li><li>Verificação: testar um método para ver se retorna o <b>resultado especificado</b> (<b>teste de unidade</b>).</li><li>Validação: <b>teste funcional e de aceitação, ao lado do cliente</b>.</li></ul></div></div>
+</div><div class="q" id="q31">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">31</span>Defina e explique os 4 níveis de teste, com 1 exemplo de cada.</div>
+<div class="c"><div class="lab">Conceito</div><b>Níveis de teste</b>: do menor pedaço (unidade) até o cliente (aceitação).</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li><b>Unidade</b>: testa componente isolado (método/classe), feito pelo dev. Ex.: <code>fatorial(3) == 6</code> no JUnit.</li><li><b>Integração</b>: testa as <b>interfaces/interações</b> entre componentes. Ex.: pedido chama pagamento com os parâmetros certos.</li><li><b>Sistema</b>: sistema inteiro vs <b>requisitos</b> (inclusive não funcionais), caixa-preta. Ex.: desempenho com 20.000 usuários.</li><li><b>Aceitação</b>: <b>usuário/cliente</b> valida as necessidades do negócio (alfa/beta). Ex.: banco executa "DOC para terceiros".</li></ul></div></div>
+</div><h2 id="u-arq">🏛️ Arquitetura <small>· 2 questões · 1 é sobre Arquitetura Limpa</small></h2><p class="note">Arquitetura Limpa: estude <b>14, 15 e 16 juntas</b> (camadas → Regra de Dependência → Inversão de Controle). A segunda de arquitetura deve ser de microsserviços (<b>10 ou 9</b>, com gabarito oficial).</p><div class="q" id="q14">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">14</span>Explique as 4 camadas concêntricas da Arquitetura Limpa com 1 exemplo de sistema.</div>
+<div class="c"><div class="lab">Conceito</div><b>Arquitetura Limpa</b>: 4 círculos, do núcleo (negócio) para a borda (tecnologia).</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Exemplo: sistema de <b>matrícula</b>.</li><li>1. <b>Entidades</b> (núcleo): regras gerais — Aluno, Disciplina.</li><li>2. <b>Casos de Uso</b>: regras do sistema — MatricularAluno (checa pré-requisitos).</li><li>3. <b>Adaptadores</b>: mediam o externo — controller REST que devolve JSON.</li><li>4. <b>Frameworks externos</b> (borda): banco de dados, UI, e-mail.</li><li>Dependências sempre <b>apontam para dentro</b>.</li></ul></div></div>
+</div><div class="q" id="q15">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">15</span>O que é Regra de Dependência em uma Arquitetura Limpa?</div>
+<div class="c"><div class="lab">Conceito</div>Regra que protege o núcleo: <b>de fora para dentro, nunca o contrário</b>.</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Classes de uma camada <b>não conhecem nada de camadas mais externas</b> (classe, função, variável).</li><li>Dependências <b>apontam para dentro</b>: Frameworks → Adaptadores → Casos de Uso → Entidades.</li><li>Mantém entidades e casos de uso <b>livres de tecnologia</b>.</li></ul></div></div>
+</div><div class="q" id="q16">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">16</span>O que é Inversão de Controle em uma Arquitetura Limpa?</div>
+<div class="c"><div class="lab">Conceito</div><b>Inversão de controle</b>: o núcleo define a interface; a camada de fora a implementa.</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Usada quando um <b>caso de uso precisa chamar uma classe mais externa</b> sem violar a Regra de Dependência.</li><li>O caso de uso <b>define uma interface</b> na própria camada (ex.: EmailService); a classe externa (MailServiceImpl) <b>implementa</b>.</li><li>Em execução o fluxo vai para fora, mas <b>no código a dependência aponta para dentro</b> — daí "inversão".</li></ul></div></div>
+</div><div class="q" id="q10">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">10</span>Streaming detecta problemas em vídeos. #1: cada detector é um microsserviço que carrega o vídeo do storage. #2: detectores são módulos de um monolito, vídeo carregado 1 vez e compartilhado. Qual é mais escalável?</div>
+<div class="c"><div class="lab">Conceito</div><b>Quando NÃO usar microsserviços</b>: se dividir obriga a repetir trabalho caro (I/O).</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>Arquitetura #2 (monolito)</b>.</li><li>Carrega o vídeo da <b>memória secundária para a principal uma única vez</b>; na #1 cada detector carrega de novo.</li><li>Economiza <b>tempo de execução</b> e <b>custo de nuvem</b>. (Caso real: Amazon Prime Video.)</li></ul></div></div>
+</div><div class="q" id="q9">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">9</span>3 vantagens e 3 desvantagens de microsserviços.</div>
+<div class="c"><div class="lab">Conceito</div>Trade-off: <b>independência</b> dos times vs <b>custo de sistema distribuído</b>.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Vantagens: <b>evolução independente</b> (cada time com suas releases); <b>escalar com granularidade fina</b>; <b>tecnologias diferentes</b>; <b>falhas parciais</b> (cai um serviço, não tudo).</li><li>Desvantagem 1 — <b>Complexidade</b>: em vez de chamada de método, protocolo como <b>HTTP/REST</b>.</li><li>Desvantagem 2 — <b>Latência</b>: chamar outra máquina tem custo de comunicação.</li><li>Desvantagem 3 — <b>Transações distribuídas</b>: difícil garantir <b>atomicidade</b> com vários bancos.</li></ul></div></div>
+</div><div class="q" id="q13">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">13</span>Para que servem as portas em uma Arquitetura Hexagonal?</div>
+<div class="c"><div class="lab">Conceito</div><b>Porta</b> = <b>interface</b> (contrato) entre domínio e mundo externo.</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Por onde passa a <b>comunicação entre domínio e mundo externo</b>; independentes de tecnologia.</li><li><b>Portas de entrada</b>: de fora para dentro (<b>serviços providos</b>, ex.: empréstimo).</li><li><b>Portas de saída</b>: de dentro para fora (<b>serviços requeridos</b>, ex.: persistência).</li><li>Domínio só conhece a porta; o <b>adaptador a implementa</b> → domínio isolado.</li></ul></div></div>
+</div><h2 id="u-princ">📐 Princípios e padrões <small>· 2 questões</small></h2><p class="note">Regra da cola: <b>chamadas encadeadas</b> <code>a.b().c().d()</code> = viola <b>Demeter</b>. A questão "de 7 alternativas, cada uma com um conceito" é a <b>26</b> (padrões).</p><div class="q" id="q20">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">20</span>Que princípio é violado por <code>bib.getAcervo().getAreaConhecimento("ES").getLivros().find("ESM").getNumExemplares();</code>? Que mudança fazer em Biblioteca?</div>
+<div class="c"><div class="lab">Conceito</div><b>Lei de Demeter</b>: "não fale com estranhos" — evite cadeias longas de chamadas.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>(a) <b>Demeter</b>: <b>longa cadeia de chamadas</b> de métodos.</li><li>(b) Criar em Biblioteca o método <b>getNumExemplares</b>: <code>bib.getNumExemplares("ES", "ESM");</code></li></ul></div></div>
+</div><div class="q" id="q23">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">23</span>Que princípio é violado e como alterar? <pre><code>void imprimeDataContratacao(Funcionario func) {
+  Date data = func.getDataContratacao();
+  String msg = data.format();
+  System.out.println(msg);
+}</code></pre></div>
+<div class="c"><div class="lab">Conceito</div><b>Demeter</b>: o método só chama métodos da própria classe, de <b>parâmetros</b>, de objetos que <b>ele cria</b> e de <b>atributos</b>.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Viola <b>Demeter</b>: <code>data</code> não é parâmetro, nem atributo, nem criado ali — equivale a <code>func.getDataContratacao().format()</code>.</li><li>Solução: <b>receber a data como parâmetro</b> e renomear: <code>void imprimeData(Data data) { System.out.println(data.format()); }</code></li></ul></div></div>
+</div><div class="q" id="q26">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">26</span>Dê o nome dos padrões descritos em A a I.</div>
+<div class="c"><div class="lab">Conceito</div><b>Padrões de projeto</b> (Gang of Four): soluções prontas e com nome para problemas recorrentes.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>A. Interface unificada de alto nível → <b>Fachada</b></li><li>B. Única instância, ponto único de acesso → <b>Singleton</b></li><li>C. Converte interface → <b>Adaptador</b></li><li>D. Criar família de objetos relacionados → <b>Fábrica</b></li><li>E. Método que centraliza a criação → <b>Método Fábrica Estático</b></li><li>F. Intermediário que controla acesso → <b>Proxy</b></li><li>G. Parametrizar algoritmos → <b>Strategy</b></li><li>H. Avisar outros de mudança de estado → <b>Observador</b></li><li>I. Esqueleto na base, passos nas subclasses → <b>Template Method</b></li></ul></div></div>
+</div><div class="q" id="q22">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">22</span>Calculadora.isPrimo(n) vale para 0 ≤ n &lt; 10000; a subclasse CalculadoraRapida só vale para 1000 ≤ n &lt; 9000. Que princípio é violado?</div>
+<div class="c"><div class="lab">Conceito</div><b>Substituição de Liskov</b>: subclasse deve funcionar <b>em qualquer lugar</b> onde a classe pai funciona.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>Liskov</b>. Por herança, CalculadoraRapida pode <b>substituir</b> Calculadora.</li><li>Mas a substituição falha: a subclasse aceita uma <b>faixa de valores mais estreita</b>. Ex.: o pai resolve 0 a 999, a filha não.</li></ul></div></div>
+</div><div class="q" id="q19">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">19</span>Sempre que uma tarefa mexe nas classes A e B (arquivos diferentes), o programador move B para o arquivo de A. Que propriedade melhora? Qual piora?</div>
+<div class="c"><div class="lab">Conceito</div><b>Acoplamento evolutivo (lógico)</b>: arquivos que mudam juntos. <b>Coesão de arquivo</b>: arquivo com uma responsabilidade.</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li><b>Melhora</b>: diminui o <b>acoplamento evolutivo (lógico)</b> entre arquivos. Antes 2 arquivos mudavam, agora 1.</li><li><b>Piora</b>: diminui a <b>coesão</b> do arquivo de A — mais responsabilidades, <b>requisitos não relacionados</b> no mesmo arquivo.</li></ul></div></div>
+</div><div class="q" id="q17">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">17</span>Sistema de ~100 KLOC: proponha uma especificação com a pior coesão possível e o melhor acoplamento possível.</div>
+<div class="c"><div class="lab">Conceito</div><b>Coesão</b> = módulo faz uma coisa só (quer alta). <b>Acoplamento</b> = dependência entre módulos (quer baixo).</div>
+<div class="r"><div class="lab">Resposta <span class="tag of">Gabarito oficial</span></div><div class="ans"><ul><li>Pior coesão: <b>todas as 100 KLOC num único método main</b>.</li><li>Esse caso tem <b>acoplamento mínimo</b>: só existe um método, <b>não há outro para se acoplar</b>.</li></ul></div></div>
+</div><h2 id="u-qual">✅ Qualidade <small>· 1 questão</small></h2><p class="note">Nenhuma de qualidade tem gabarito oficial: respostas montadas pelos slides.</p><div class="q" id="q4">
+<div class="p"><div class="lab">Pergunta <span class="pri top">Mais provável</span></div><span class="n">4</span>Aponte e defina as 5 métricas estáticas vistas em aula + mais 2 usadas atualmente.</div>
+<div class="c"><div class="lab">Conceito</div><b>Métrica estática</b>: medida tirada do código/documento <b>sem executar</b> o programa.</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li><b>Fan-in/Fan-out</b>: nº de funções que chamam X / que X chama.</li><li><b>Complexidade ciclomática</b>: complexidade de controle (nº de decisões + 1).</li><li><b>Índice FOG</b>: tamanho médio de palavras e frases de um documento (legibilidade).</li><li><b>Profundidade da árvore de herança</b>: nº de níveis de herança.</li><li><b>Acoplamento entre classes</b>: quantas classes usam métodos de outras.</li><li>Mais 2 (fora dos slides): <b>LOC</b> (linhas de código) e <b>LCOM</b> (falta de coesão entre métodos).</li></ul></div></div>
+</div><div class="q" id="q2">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">2</span>O que é o Padrão CMMI no contexto de qualidade de software?</div>
+<div class="c"><div class="lab">Conceito</div><b>CMMI</b> (Capability Maturity Model Integration): modelo que mede a <b>maturidade do processo</b> de uma empresa em níveis.</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li><b>Modelo de referência</b> para avaliar o <b>nível de maturidade dos processos</b> da organização.</li><li>Reúne práticas genéricas e específicas de engenharia de <b>sistemas, software e hardware</b>.</li><li><b>5 níveis</b>: 1 Inicial, 2 Gerenciado, 3 Definido, 4 Quantitativamente Gerenciado, 5 Otimização.</li></ul></div></div>
+</div><div class="q" id="q3">
+<div class="p"><div class="lab">Pergunta <span class="pri bk">Reserva</span></div><span class="n">3</span>Por que o modelo brasileiro MPS.Br é compatível com o padrão CMMI?</div>
+<div class="c"><div class="lab">Conceito</div><b>MPS.Br</b>: versão brasileira de modelo de maturidade (Softex), com degraus menores para empresas brasileiras.</div>
+<div class="r"><div class="lab">Resposta <span class="tag sl">Sem gabarito: montada pelos slides</span></div><div class="ans"><ul><li>Mesma <b>base normativa</b>: <b>ISO/IEC 12207</b> e <b>ISO/IEC 15504</b>; mesmo objetivo: <b>maturidade do processo</b>.</li><li>Seus <b>7 níveis (G a A)</b> se <b>mapeiam</b> nos do CMMI: G-F ≈ 2; E-D-C ≈ 3; B ≈ 4; A ≈ 5.</li><li>Degraus menores = mais acessível a pequenas empresas, mas equivalente ao CMMI.</li></ul></div></div>
+</div><p style="text-align:center;font-size:13px;color:#666"><a href="../lista2/">Lista 2 completa (38 questões)</a></p></main>
+<script>document.addEventListener('click',e=>{const a=e.target.closest('.ans');if(a&&document.body.classList.contains('hide'))a.classList.toggle('show')})</script>
+</body></html>
