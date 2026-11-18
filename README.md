@@ -10,3 +10,5 @@ Site: https://rafaelrr5.github.io/engsoft-dcc061/
 - `foco/`: questões da Lista 2 que mais devem cair na TVC2, por prioridade
 
 - Simulados das listas 1 e 2: https://rafaelrr5.github.io/engsoft-dcc061/simulado/
+
+- `foco-2chamada/`: 2ª chamada da TVC1, minha parte da Lista 1 (Q1-18 e Q20-27), por prioridade
